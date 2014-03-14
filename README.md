@@ -40,6 +40,12 @@ $ git fetch upstream
 $ git merge upstream/master
 ###### Merge qualquer atualização baixada nos seus arquivos de trabalho local
 
+#### Pull requests
+
+![pull requests](http://cl.ly/image/083h2R2P3S2N/pullrequests.png "pull requests")
+
+![novo pull](http://cl.ly/image/253L101x1329/novopull.png "novo pull request")
+
 ### Componentes da Equipe
 
 * José Bonifácio
