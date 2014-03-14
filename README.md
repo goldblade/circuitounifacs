@@ -9,7 +9,7 @@ Inscrições Circuito Unifacs App
 
 #### Passo 2: Clone o projeto para sua maquina
 
-$ git clone https://github.com/goldblade/circuitounifacs.git
+$ git clone https://github.com/seuusuario/circuitounifacs.git
 Clona seu fork do repositorio no diretorio corrente do terminal
 
 #### Passo 3: Configurar o repositório remoto
