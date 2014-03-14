@@ -1,6 +1,7 @@
 Inscrições Circuito Unifacs App
 ===============================
 José Bonifácio
-Eduardo
-Juan
-Adriano
+Eduardo da Penha
+Juan Magalhães
+Adriano Madureira
+===============================
