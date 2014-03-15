@@ -18,8 +18,7 @@ class Conexao
 		/**
 		 * Se arquivo de configuracao tiver ok, faz a conexao com o banco de dados
 		 */
-		if ($this->globalConf){			
-			// var_dump($this->globalConf);
+		if ($this->globalConf){						
 			$mysqli = new \mysqli($this->globalConf['db']['host'], $this->globalConf['db']['usuario'], $this->globalConf['db']['senha'], $this->globalConf['db']['database']);
 			if (mysqli_connect_errno()) {				
 				var_dump(mysqli_connect_error());
