@@ -17,7 +17,10 @@ function autoload($nomeClasse){
     }
     
     $path = __DIR__ . DIRECTORY_SEPARATOR . $nomeClasse;
-    
+
+    /**
+     * @todo verificar se o arquivo existe antes do require
+     */    
     require_once($nomeClasse);
 }
 spl_autoload_register('autoload');
