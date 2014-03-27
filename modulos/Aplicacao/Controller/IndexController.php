@@ -16,11 +16,10 @@ class IndexController extends ActionController
 	{
 		$teste = array('teste', '2', '3');
 		$novoarray = array('2222', '3333', '4444', '5555');
-		$string  = "O REI";
+		
 		return self::renderHtml(array(
 			'gold' => $teste,
-			'novoarray' => $novoarray,
-			'string' => $string
+			'novoarray' => $novoarray,			
 		));
 	}
 }
