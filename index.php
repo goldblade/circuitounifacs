@@ -9,7 +9,7 @@ $quebrandoUri = explode("/", $uri);
 $countUri = count($quebrandoUri);
 //var_dump($countUri);
 //var_dump($quebrandoUri);
-$modulo = $quebrandoUri[1];
+$modulo = $quebrandoUri[1];var_dump($quebrandoUri[1]);
 
 if ($countUri == 3)
 	$controller = $quebrandoUri[2];
@@ -21,19 +21,45 @@ if ($countUri == 4)
 
 /**
  * Verificando se existe o modulo requisitado no sistema
+ *
+ * Se existir o modulo instancia o controler e a action requisitada
+ * se nao existe o modulo e ele veio vazio carrega pagina inicial da app
+ * se nao existe o modulo e nao veio vazio carrega tela de erro
  */
 //var_dump(getcwd());var_dump(ucfirst($modulo));
-if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != ucfirst($modulo)) ) {
+var_dump(ucfirst($modulo));
+var_dump($modulo);
+if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
+//if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) ) {
 	var_dump("modulo existe");
-} else {
-	//echo "modulo nao existe, carregando modulo padrao do site";
-	$app = new IndexController();
-	$app->setUri(array(
-		'modulo' => 'Aplicacao',
-		'controller' => 'index',
-		'action' => 'index'
-	));
-	$app->indexAction();
+} else {	
+	/**
+	 * modulo nao existe e veio vazio no request do navegador, 
+	 * carregando modulo, controller e action padrao do site
+	 */
+	if ($modulo == ""){
+		$app = new IndexController();
+		$app->setUri(array(
+			'modulo' => 'Aplicacao',
+			'controller' => 'index',
+			'action' => 'index'
+		));
+		$app->indexAction();	
+	} else {
+		/**
+		 * Carregando Modulo, controller e action de erro
+		 */
+		//echo "MODULO NAO EXISTE CARREGAR TELA DE ERRO";		
+		$error = new modulos\Error\Controller\IndexController('Error 404, página não encontrada!');
+		//var_dump($error);
+		$error->setUri(array(
+			'modulo' => 'Error',
+			'controller' => 'index',
+			'action' => 'index'
+		));
+		$error->indexAction();
+	}
+	
 }
 
 
