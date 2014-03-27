@@ -9,13 +9,22 @@ $quebrandoUri = explode("/", $uri);
 $countUri = count($quebrandoUri);
 //var_dump($countUri);
 //var_dump($quebrandoUri);
-$modulo = $quebrandoUri[1];var_dump($quebrandoUri[1]);
+$modulo = $quebrandoUri[1];
 
 if ($countUri == 3)
 	$controller = $quebrandoUri[2];
 
 if ($countUri == 4)
 	$acao = $quebrandoUri[3];
+
+if ($countUri >= 5) {
+	//existem parametros 
+	//verificando se o parametro esta vazio
+	//@todo capturar parametros e seus valores 
+	if ($quebrandoUri[4] === ""){
+		var_dump("parametro vazio carrega acao index action do modulo e controller corrente");
+	}
+}
 
 //var_dump("TOTAL DE URI = " . $countUri);
 
@@ -31,7 +40,37 @@ var_dump(ucfirst($modulo));
 var_dump($modulo);
 if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 //if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) ) {
-	var_dump("modulo existe");
+	//var_dump("modulo existe");
+	// instanciar o controller do modulo requisitado e executar a acao
+	$controllerInstancia = "modulos\\" . ucfirst($modulo);	
+	if (isset($controller)){
+		//tem controller na requisicao
+		$controllerInstancia .= "\\" . ucfirst($controller);
+	} else {
+		//nao tem controller, tenta instanciar o controller IndexController.php 
+		//se ocorrer algum erro, manda para o controller de erro
+		$controllerInstancia .= "\\Controller\\IndexController";		
+		if (class_exists($controllerInstancia)){
+			$app = new $controllerInstancia();
+			//verificar se existe uma acao requisitada
+			$app->setUri(array(
+				'modulo' => ucfirst($modulo),
+				'controller' => 'index',
+				'action' =>	$acao
+			));
+		} else {
+			$error = new modulos\Error\Controller\IndexController('Error, controller não localizado!');
+			//var_dump($error);
+			$error->setUri(array(
+				'modulo' => 'Error',
+				'controller' => 'index',
+				'action' => 'index'
+			));
+			$error->indexAction();
+		}		
+	}
+	var_dump($controllerInstancia);
+	//$app = new;
 } else {	
 	/**
 	 * modulo nao existe e veio vazio no request do navegador, 
@@ -63,13 +102,7 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 }
 
 
-if ($countUri >= 5) {
-	//existem parametros 
-	//verificando se o parametro esta vazio
-	if ($quebrandoUri[4] === ""){
-		var_dump("parametro vazio carrega acao index action do modulo e controller corrente");
-	}
-}
+
 //echo "nome do modulo => ". $modulo . " Controller => " . $controller . " ACAO => " . $acao;
 
 /*$controller = $uri[0] . '.php';
