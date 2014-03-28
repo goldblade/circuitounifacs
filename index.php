@@ -57,14 +57,14 @@ if ($countUri >= 5) {
 if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 	// instanciar o controller do modulo requisitado e executar a acao
 	
-	if ($controller){
+	if ($controller){		
 		$controllerInstancia = "modulos\\" . ucfirst($modulo) ."\\Controller\\" . ucfirst($controller . "Controller");
 		//var_dump("tem controller");
 		//tem controller na requisicao
 		//$controllerInstancia .= "\\" . ucfirst($controller) . "Controller;
 		//verificando se existe o controller no sistema
 		if (class_exists($controllerInstancia)) {
-			//echo "controle existe";
+			
 			$app = new $controllerInstancia();
 			
 			if ($acao) {
@@ -91,7 +91,7 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 				if (method_exists($app, 'indexAction')) {
 					$app->setUri(array(
 						'modulo' => ucfirst($modulo),
-						'controller' => 'index',
+						'controller' => $controller,
 						'action' => 'index'
 					));
 					$app->indexAction();
