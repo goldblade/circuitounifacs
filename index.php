@@ -59,7 +59,7 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 	
 	if ($controller){
 		$controllerInstancia = "modulos\\" . ucfirst($modulo) ."\\Controller\\" . ucfirst($controller . "Controller");
-		var_dump("tem controller");
+		//var_dump("tem controller");
 		//tem controller na requisicao
 		//$controllerInstancia .= "\\" . ucfirst($controller) . "Controller;
 		//verificando se existe o controller no sistema
