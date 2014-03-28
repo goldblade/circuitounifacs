@@ -22,4 +22,14 @@ class IndexController extends ActionController
 			'novoarray' => $novoarray,			
 		));
 	}
+	
+	/**
+	 * @todo verificar se o arquivo de view existe, caso nao exibir a mensagem pro usuario
+	 */
+
+	public function index2Action()
+	{
+		return self::renderHtml(array(
+		));
+	}
 }

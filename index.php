@@ -1,7 +1,7 @@
 <?php
 require_once('autoload.php');
 //use Unifacs\Core\Inicio;
-//use modulos\Aplicacao\Controller\IndexController;
+use modulos\Aplicacao\Controller\IndexController;
 
 $uri = $_SERVER['REQUEST_URI'];
 
@@ -64,14 +64,54 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 		//$controllerInstancia .= "\\" . ucfirst($controller) . "Controller;
 		//verificando se existe o controller no sistema
 		if (class_exists($controllerInstancia)) {
-			echo "controle existe";
+			//echo "controle existe";
 			$app = new $controllerInstancia();
-		} else {
-			echo "esse controle nao existe";
-		}
+			
+			if ($acao) {
+				$action = $acao . "Action";				
+				if (method_exists($app, $action)) {
+					$app->setUri(array(
+						'modulo' => ucfirst($modulo),
+						'controller' => $controller,
+						'action' => $acao
+					));
+					$app->$action();
+				} else {
+					$error = new modulos\Error\Controller\IndexController('Ação requisitada não encontrada!');				
+					$error->setUri(array(
+						'modulo' => 'Error',
+						'controller' => 'index',
+						'action' => 'index'
+					));
+					$error->indexAction();
+				}
+			} else {
+				//acao nao foi passada na requisicao, tentar carregar a acao padrao indexAction
+				//se nao existir acao padrao, exibe msg de erro
+				if (method_exists($app, 'indexAction')) {
+					$app->setUri(array(
+						'modulo' => ucfirst($modulo),
+						'controller' => 'index',
+						'action' => 'index'
+					));
+					$app->indexAction();
+				} else {
+					$error = new modulos\Error\Controller\IndexController('Ação requisitada não encontrada!');				
+					$error->setUri(array(
+						'modulo' => 'Error',
+						'controller' => 'index',
+						'action' => 'index'
+					));
+					$error->indexAction();
+				}
+
+			}
+			
+			
+		} 
+
 	} else {
-		var_dump($controller);
-		var_dump("nao tem controller ?");
+		//var_dump($controller);		
 		//nao tem controller, tenta instanciar o controller IndexController.php 
 		//se ocorrer algum erro, manda para o controller de erro
 		$controllerInstancia = "modulos\\Aplicacao\\Controller\\IndexController";		
