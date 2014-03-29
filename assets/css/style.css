@@ -1,0 +1,32 @@
+/* cor base da logo #6d609e */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
+
+body {
+	font-family: 'Open Sans', Arial, Verdana, Helvetica, sans-serif;
+	font-size: 18px;
+}
+
+.navbar {
+	margin-top: 4px;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+.navbar-brand {
+	padding: 3px 10px 0 10px;
+}
+
+
+footer {
+	margin: 0 4px 0 4px;
+	background-color: #00B233;
+}
+
+footer .container {
+	color: #FFF;
+	padding: 10px;
+}
+
+footer a {
+	color: #FFF;
+}

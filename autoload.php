@@ -18,6 +18,26 @@ function autoload($nomeClasse){
     
     $path = __DIR__ . DIRECTORY_SEPARATOR . $nomeClasse;
     
-    require_once($nomeClasse);
+    try {
+        checkFile($nomeClasse);
+        require_once($nomeClasse);
+    } catch (\Exception $e) {
+        $error = new modulos\Error\Controller\IndexController('Ação não encontrada!');
+        $error->setUri(array(
+            'modulo' => 'Error',
+            'controller' => 'index',
+            'action' => 'index'
+        ));
+        $error->indexAction();
+    }
+}
+
+function checkFile($arquivo)
+{    
+    $root = realpath($_SERVER["DOCUMENT_ROOT"]);
+    if (!file_exists($root . '/' . $arquivo))
+        throw new \Exception("Arquivo de Classe não existe", 1);
+       
+
 }
 spl_autoload_register('autoload');
