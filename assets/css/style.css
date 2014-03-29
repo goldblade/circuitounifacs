@@ -16,6 +16,33 @@ body {
 	padding: 3px 10px 0 10px;
 }
 
+.btn-primary {
+  color: #fff;
+  background-color: #6D609E;
+  border-color: #985FAB;
+}
+
+.btn-primary {
+  background-image: -webkit-linear-gradient(top, #6D609E 0%, #8C65B5 100%);
+  background-image:         linear-gradient(to bottom, #6D609E 0%, #8C65B5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6D609E', endColorstr='#ff8C65B5', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  background-repeat: repeat-x;
+  border-color: #985FAB;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #8C65B5;
+  background-position: 0 -15px;
+  border-color: #985FAB;
+}
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #8C65B5;
+  border-color: #985FAB;
+}
+
+
 
 footer {
 	margin: 0 4px 0 4px;
