@@ -35,7 +35,7 @@
 			    	<ul class="nav navbar-nav">
 			    		<li><a href="/">Ínicio</a></li>
 						<li class="active"><a href="#">Eventos</a></li>
-						<li><a href="#">Locais</a></li>
+						<li><a href="/gerenciamento/locais">Locais</a></li>
 						<li><a href="#">Inscritos</a></li>
 						<li><a href="#">Usuários</a></li>
 				        <!-- <li><a href="#">Link</a></li>
