@@ -66,9 +66,22 @@
 		<?php echo $this->conteudo;?>
 	</section>
 	<footer class="img-rounded">
-		<div class="container">
-			RODAPÉ DA APLICAÇÃO<br>
-			<a href="#">Circuito Unifacs</a>
+		<div class="container">			
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<img src="/assets/img/unifacslogorodape.png" class="img-responsive" alt="Logo unifacs rodapé">					
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-8">
+					<p>
+						Endereço: Rua X da Esquina Y	
+					</p>					
+					<p>
+						Telefone: (11) 2222-2222, 1122-3333
+					</p>
+				</div>
+				<!-- <div class="clearfix visible-xs"></div> -->
+			</div>
+			
 		</div>
 	</footer>
 </body>

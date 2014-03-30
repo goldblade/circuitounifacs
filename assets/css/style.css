@@ -45,13 +45,14 @@ body {
 
 
 footer {
-	margin: 0 4px 0 4px;
-	background-color: #00B233;
+	margin: 30px 4px 0 4px;
+	/*background-color: #00B233;*/
+  background-color: #AAA592;
 }
 
 footer .container {
 	color: #FFF;
-	padding: 10px;
+	padding: 30px 0 0 0;
 }
 
 footer a {

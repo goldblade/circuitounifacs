@@ -35,10 +35,14 @@
 }
 </style>
 <div class="container">	
+    <div class="page-header">
+        <h1>Login <small>do sistema</small></h1>
+    </div>
 	<form class="form-signin" role="form" method="post" action="/auth/login">
-        <h2 class="form-signin-heading">Por favor faça login</h2>
+        <!-- <h2 class="form-signin-heading">Digite as credenciais</h2> -->
         <input type="email" class="form-control" placeholder="Seu Email" required autofocus>
         <input type="password" class="form-control" placeholder="Sua Senha" required>        
         <button class="btn btn-lg btn-primary btn-block" type="submit">Logar</button>
+        <a href="#cadastro" class="btn btn-lg btn-primary btn-block cadastro">Registre-se</a>        
     </form>
 </div>
