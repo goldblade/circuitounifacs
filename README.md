@@ -46,9 +46,28 @@ $ git merge upstream/master
 
 ![novo pull](http://cl.ly/image/253L101x1329/novopull.png "novo pull request")
 
+### Pré-requisitos
+
+* Servidor Apache
+* Módulo rewrite do apache
+* Mysql
+* Php 5+
+
+Os arquivos do projeto por enquanto precisa rodar no diretorio raiz, e não em sub-diretório:
+
+Exemplo: 
+
+http://localhost - Correto
+
+http://localhost/circuitounifacs - Errado
+
+Correções serão feitas para que funcione em qualquer diretório ou sub-dir.
+
+
 ### Componentes da Equipe
 
 * José Bonifácio
 * Eduardo da Penha
 * Juan Magalhães
 * Adriano Madureira
+* Matias Falcão
