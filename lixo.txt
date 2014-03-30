@@ -1,0 +1,39 @@
+Exemplo
+
+// Namespace to path
+\vendor\my\namespace\class => /var/www/vendor/my/namespace/class.php
+
+// Namespace and underscores to path
+\vendor\my\namespace\class_name => /var/www/vendor/my/namespace/class/name.php
+Implementação com o autoload
+
+
+<?php
+
+/**
+ * Disponível no PHP 5.3
+ * @see http://www.php.net/manual/pt_BR/function.autoload.php
+ */
+function __autoload($className)
+{
+    // Remove as contrabarras extras.
+    $className = trim($className, '\\');
+
+    // Existe underscores?
+    if(strpos($className, '_')) {
+        // \vendor\namespace\Class_Name => vendor/namespace/Class/Name.php
+        $className = str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+    }
+
+    // Existe contra-barras?
+    if(strpos($className, '\\')) {
+        // \vendor\namespace\Classname => vendor/namespace/Classname.php
+        $className = str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
+    }
+
+    // Supondo que a raiz da nossa aplicação está na raiz deste arquivo
+    // /var/www/vendor/namespace/classname.php
+    $path = __DIR__ . DIRECTORY_SEPARATOR . $className;
+
+    require_once($className);
+}

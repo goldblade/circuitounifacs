@@ -1,7 +1,7 @@
 <div class="container">
-	<h1>
-		Circuito Unifacs <small>sistema de inscrições </small>
-	</h1>
+	<div class="page-header">
+		<h1>Circuito Unifacs <small>sistema de inscrições </small></h1>
+	</div>	
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
 		Vitae, et magnam consequatur veritatis dolorem aspernatur sequi nobis 

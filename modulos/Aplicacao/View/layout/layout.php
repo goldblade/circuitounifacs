@@ -33,6 +33,7 @@
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			    	<ul class="nav navbar-nav">
+			    		<li><a href="/">Ínicio</a></li>
 						<li class="active"><a href="#">Eventos</a></li>
 						<li><a href="#">Locais</a></li>
 						<li><a href="#">Inscritos</a></li>
@@ -65,9 +66,22 @@
 		<?php echo $this->conteudo;?>
 	</section>
 	<footer class="img-rounded">
-		<div class="container">
-			RODAPÉ DA APLICAÇÃO<br>
-			<a href="#">Circuito Unifacs</a>
+		<div class="container">			
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<img src="/assets/img/unifacslogorodape.png" class="img-responsive" alt="Logo unifacs rodapé">					
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-8">
+					<p>
+						Endereço: Rua X da Esquina Y	
+					</p>					
+					<p>
+						Telefone: (11) 2222-2222, 1122-3333
+					</p>
+				</div>
+				<!-- <div class="clearfix visible-xs"></div> -->
+			</div>
+			
 		</div>
 	</footer>
 </body>

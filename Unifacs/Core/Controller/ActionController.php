@@ -46,7 +46,8 @@ class ActionController
 			}
 		//} 		
 		//var_dump($dados);
-		return "renderizando o template passando parametros";
+
+		//return "renderizando o template passando parametros";
 	}
 
 	private function getFile($nomeArquivo, $dados)

@@ -39,8 +39,17 @@ if ($countUri >= 5) {
 	//existem parametros 
 	//verificando se o parametro esta vazio
 	//@todo capturar parametros e seus valores 
-	if ($quebrandoUri[4] === ""){
-		var_dump("parametro vazio carrega acao index action do modulo e controller corrente");
+	//var_dump($countUri);
+	if ($quebrandoUri[4] != ""){
+		//tem parametros fazer o calculo da quantidade
+		$qtdcalculo = $countUri - 4;
+		$i = 4;
+		$arrayParametros = array();
+		while($i < $countUri){
+			echo "=> " . $quebrandoUri[$i] . " ";			
+			$i++;
+		}
+		var_dump($qtdcalculo);
 	}
 }
 
@@ -77,13 +86,7 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 					));
 					$app->$action();
 				} else {
-					$error = new modulos\Error\Controller\IndexController('Ação requisitada não encontrada!');				
-					$error->setUri(array(
-						'modulo' => 'Error',
-						'controller' => 'index',
-						'action' => 'index'
-					));
-					$error->indexAction();
+					error('Ação requisitada não encontrada!');					
 				}
 			} else {
 				//acao nao foi passada na requisicao, tentar carregar a acao padrao indexAction
@@ -96,18 +99,9 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 					));
 					$app->indexAction();
 				} else {
-					$error = new modulos\Error\Controller\IndexController('Ação requisitada não encontrada!');				
-					$error->setUri(array(
-						'modulo' => 'Error',
-						'controller' => 'index',
-						'action' => 'index'
-					));
-					$error->indexAction();
+					error('Ação requisitada não encontrada!');					
 				}
-
-			}
-			
-			
+			}			
 		} 
 
 	} else {
@@ -129,25 +123,12 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 				));
 				$app->indexAction();
 			} else {
-				$error = new modulos\Error\Controller\IndexController('Ação requisitada não encontrada!');				
-				$error->setUri(array(
-					'modulo' => 'Error',
-					'controller' => 'index',
-					'action' => 'index'
-				));
-				$error->indexAction();
+				error('Ação requisitada não encontrada!');
 			}
 
 			
 		} else {
-			$error = new modulos\Error\Controller\IndexController('Error, controller não localizado!');
-			//var_dump($error);
-			$error->setUri(array(
-				'modulo' => 'Error',
-				'controller' => 'index',
-				'action' => 'index'
-			));
-			$error->indexAction();
+			error('Error, controller não localizado!');			
 		}		
 	}
 	//var_dump($controllerInstancia);
@@ -169,20 +150,22 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 		/**
 		 * Carregando Modulo, controller e action de erro
 		 */
-		//echo "MODULO NAO EXISTE CARREGAR TELA DE ERRO";		
-		$error = new modulos\Error\Controller\IndexController('Error 404, página não encontrada!');
-		//var_dump($error);
-		$error->setUri(array(
-			'modulo' => 'Error',
-			'controller' => 'index',
-			'action' => 'index'
-		));
-		$error->indexAction();
+		//echo "MODULO NAO EXISTE CARREGAR TELA DE ERRO";
+		error('Error 404, página não encontrada!');		
 	}
 	
 }
 
-
+function error($msg)
+{
+	$error = new modulos\Error\Controller\IndexController($msg);
+	$error->setUri(array(
+		'modulo' => 'Error',
+		'controller' => 'index',
+		'action' => 'index'
+	));
+	$error->indexAction();
+}
 
 //echo "nome do modulo => ". $modulo . " Controller => " . $controller . " ACAO => " . $acao;
 
