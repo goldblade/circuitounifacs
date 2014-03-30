@@ -22,7 +22,7 @@ function autoload($nomeClasse){
         checkFile($nomeClasse);
         require_once($nomeClasse);
     } catch (\Exception $e) {
-        $error = new modulos\Error\Controller\IndexController('Ação não encontrada!');
+        $error = new \modulos\Error\Controller\IndexController('Ação não encontrada!');
         $error->setUri(array(
             'modulo' => 'Error',
             'controller' => 'index',
