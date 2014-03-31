@@ -9,9 +9,11 @@
 	<link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
 	<!-- Latest compiled and minified JavaScript -->
 	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/componentes/jquery-ui-1.10.4/themes/base/jquery-ui.css">
 	<script src="/assets/js/jquery-2.1.0.min.js"></script>
 	<script src="/assets/js/bootstrap.min.js"></script>
-
+	<script src="/assets/componentes/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
+	<script src="/assets/js/calendar.js"></script>
 </head>
 <body>	
 	<header>

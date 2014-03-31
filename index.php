@@ -46,10 +46,12 @@ if ($countUri >= 5) {
 		$i = 4;
 		$arrayParametros = array();
 		while($i < $countUri){
-			echo "=> " . $quebrandoUri[$i] . " ";			
+			//echo "=> " . $quebrandoUri[$i] . " ";			
+			$arrayParametros[] = $quebrandoUri[$i];
 			$i++;
 		}
-		var_dump($qtdcalculo);
+		//var_dump($qtdcalculo);
+		//var_dump($arrayParametros);
 	}
 }
 
