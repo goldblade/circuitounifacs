@@ -32,4 +32,10 @@ class IndexController extends ActionController
 		return self::renderHtml(array(
 		));
 	}
+
+	public function saveAction()
+	{
+		return self::renderHtml(array(
+		));	
+	}
 }
