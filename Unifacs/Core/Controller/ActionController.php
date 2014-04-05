@@ -13,6 +13,8 @@ class ActionController
 
 	private $titulo = "Circuito Unifacs";
 
+	private $param;
+
 	public function setUri($value)
 	{
 		$this->uri = $value;
@@ -36,6 +38,13 @@ class ActionController
 					//$this->conteudo = $dados; pegar o arquivo html de acordo com o modulo, controler e acao																		
 					$this->conteudo = self::getFile(getcwd() . "/modulos/" . $this->uri['modulo'] . "/View/" . $this->uri['controller'] . "/" . $this->uri['action'] .".php", $dados);															
 					//return include getcwd() . "/modulos/" . $this->uri['modulo'] . "/View/layout/" . $this->layout;
+					
+					/**
+					 * Extraindo dados e transformando em variaveis
+					 */
+					if (isset($dados))
+						extract($dados);
+					
 					return include getcwd() . "/modulos/Aplicacao/View/layout/" . $this->layout;
 					
 					//$teste = include getcwd() . "/modulos/" . $this->uri['modulo'] . "/View/layout/" . $this->layout;
@@ -57,5 +66,24 @@ class ActionController
 		ob_start();
 		require($nomeArquivo);
 		return ob_get_clean();
+	}
+
+
+	public function getParam($param = null)
+	{
+		if ($param) {
+			//retorna o valor do parametro passado
+			// var_dump($param);
+			// var_dump($this->param);
+			return $this->param[$param];
+		} else {
+			//retorna o array de parametros
+			return $this->param;
+		}
+	}
+
+	public function setParam($value)
+	{
+		$this->param = $value;
 	}
 }

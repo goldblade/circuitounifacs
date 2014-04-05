@@ -45,13 +45,12 @@ if ($countUri >= 5) {
 		$qtdcalculo = $countUri - 4;
 		$i = 4;
 		$arrayParametros = array();
-		while($i < $countUri){
-			//echo "=> " . $quebrandoUri[$i] . " ";			
-			$arrayParametros[] = $quebrandoUri[$i];
-			$i++;
-		}
+		while($i < $countUri){			
+			$arrayParametros[$quebrandoUri[$i]] = $quebrandoUri[$i+1];			
+			$i = $i +2;
+		}		
 		//var_dump($qtdcalculo);
-		//var_dump($arrayParametros);
+		// var_dump($arrayParametros);		
 	}
 }
 
@@ -86,7 +85,12 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 						'controller' => $controller,
 						'action' => $acao
 					));
+
+					if (isset($arrayParametros)){						
+						$app->setParam($arrayParametros);						
+					} 
 					$app->$action();
+
 				} else {
 					error('Ação requisitada não encontrada!');					
 				}
@@ -99,7 +103,8 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 						'controller' => $controller,
 						'action' => 'index'
 					));
-					$app->indexAction();
+					$app->indexAction();					
+
 				} else {
 					error('Ação requisitada não encontrada!');					
 				}
@@ -123,7 +128,8 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 					'controller' => 'index',
 					'action' => 'index'
 				));
-				$app->indexAction();
+				$app->indexAction();				
+
 			} else {
 				error('Ação requisitada não encontrada!');
 			}
@@ -147,7 +153,8 @@ if (is_dir( getcwd() . "/modulos/" . ucfirst($modulo) ) && ($modulo != "") ) {
 			'controller' => 'index',
 			'action' => 'index'
 		));
-		$app->indexAction();	
+		$app->indexAction();			
+
 	} else {
 		/**
 		 * Carregando Modulo, controller e action de erro

@@ -37,9 +37,15 @@
 			    	<ul class="nav navbar-nav">
 			    		<li><a href="/">Ínicio</a></li>
 						<li class="active"><a href="/aplicacao/eventos">Eventos</a></li>
-						<li><a href="/gerenciamento/locais">Locais</a></li>
-						<li><a href="#">Inscritos</a></li>
-						<li><a href="#">Usuários</a></li>
+						<?php						
+						if ($admin){
+						?>
+							<li><a href="/gerenciamento/locais">Locais</a></li>
+							<li><a href="#">Inscritos</a></li>
+							<li><a href="#">Usuários</a></li>
+						<?php
+						}
+						?>
 				        <!-- <li><a href="#">Link</a></li>
 				        <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>

@@ -27,7 +27,7 @@
 			<tbody>
 				<tr>
 					<td>Campus X</td>
-					<td>
+					<td class="text-center">
 						<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-home"></i> Salas</a>
 						<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
 						<a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
