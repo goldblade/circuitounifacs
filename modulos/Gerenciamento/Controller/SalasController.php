@@ -3,7 +3,7 @@ namespace modulos\Gerenciamento\Controller;
 
 use Unifacs\Core\Controller\ActionController;
 
-class LocaisController extends ActionController
+class SalasController extends ActionController
 {
 
 	public function indexAction()
@@ -17,11 +17,6 @@ class LocaisController extends ActionController
 	{		
 		return self::renderHtml(array(
 		));
-	}
-
-	public function localsalvoAction()
-	{
-		return self::renderHtml(array());
-	}
+	}	
 	
 }

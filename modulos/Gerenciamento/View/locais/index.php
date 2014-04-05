@@ -3,11 +3,13 @@
 		<h1>Locais <small>físicos</small></h1>
 	</div>	
 	<div class="row">
-		<div class="col-xs-12 col-md-9 col-sm-6">
-			<button type="button" class="btn btn-primary"><strong><i class="glyphicon glyphicon-plus"></i> Novo Local</strong></button>
+		<div class="col-xs-12 col-md-9 col-sm-6">			
+			<a href="/gerenciamento/locais/save" class="btn btn-primary">
+				<strong><i class="glyphicon glyphicon-plus"></i> Novo Local</strong>
+			</a>
 		</div>
 		<div class="col-xs-12 col-md-3 col-sm-6">
-			<form action="#" role="form" ccol-md-3 col-sm-6lass="form-inline">
+			<form action="#" role="form" class="form-inline">
 				<input type="text" class="form-control" placeholder="Pesquisar">
 			</form>		
 		</div>
@@ -17,15 +19,19 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>NOME</th>
-					<th>AÇÕES</th>
+					<th class="col-sm-9">NOME</th>
+					<th class="col-sm-3">AÇÕES</th>
 				</tr>
 				
 			</thead>
 			<tbody>
 				<tr>
 					<td>Campus X</td>
-					<td>BOTOES</td>
+					<td>
+						<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-home"></i> Salas</a>
+						<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
+						<a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
