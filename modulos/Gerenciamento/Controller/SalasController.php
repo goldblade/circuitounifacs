@@ -19,4 +19,8 @@ class SalasController extends ActionController
 		));
 	}	
 	
+	public function salassaveAction()
+	{
+		return self::renderHtml();
+	}
 }

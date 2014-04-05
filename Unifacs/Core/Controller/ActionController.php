@@ -21,7 +21,7 @@ class ActionController
 	/**
 	 * Class controller
 	 */
-	public function renderHtml($dados)
+	public function renderHtml($dados = null)
 	{
 		//extract($dados);//extraindo dados e transformando em variaveis
 		//var_dump($this->uri['modulo']);
@@ -50,9 +50,10 @@ class ActionController
 		//return "renderizando o template passando parametros";
 	}
 
-	private function getFile($nomeArquivo, $dados)
+	private function getFile($nomeArquivo, $dados = null)
 	{
-		extract($dados);//extraindo dados e transformando em variaveis
+		if (isset($dados))
+			extract($dados);//extraindo dados e transformando em variaveis
 		ob_start();
 		require($nomeArquivo);
 		return ob_get_clean();
