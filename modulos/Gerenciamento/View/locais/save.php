@@ -7,8 +7,8 @@
 		<div class="col-xs-12 col-md-12 col-sm-12">
 			<form class="form-horizontal" role="form" action="/gerenciamento/locais/localsalvo/admin/1" method="post">
 				<div class="form-group">
-					<label for="nome" class="col-xs-12 col-md-2 col-sm-3 control-label">Nome</label>
-					<div class="col-xs-12 col-md-4 col-sm-9">
+					<label for="nome" class="col-xs-12 col-sm-3 col-md-2 control-label">Nome</label>
+					<div class="col-xs-12 col-sm-9 col-md-4">
 						<input type="text" class="form-control" id="nome" placeholder="Nome do local"/>
 					</div>
 				</div>
