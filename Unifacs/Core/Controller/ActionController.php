@@ -86,4 +86,9 @@ class ActionController
 	{
 		$this->param = $value;
 	}
+
+	public function getUri()
+	{
+		return $this->uri;
+	}
 }

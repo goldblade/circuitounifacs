@@ -8,8 +8,9 @@ class IndexController extends ActionController
 
 	public function indexAction()
 	{			
+		$admin = (int) $this->getParam('admin');
 		return self::renderHtml(array(
-		
+			'admin' => $admin
 		));
 	}
 	

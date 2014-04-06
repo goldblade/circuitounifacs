@@ -4,7 +4,7 @@
 	</div>	
 	<div class="row">
 		<div class="col-xs-12 col-md-9 col-sm-6">			
-			<a href="/gerenciamento/locais/save" class="btn btn-primary">
+			<a href="/gerenciamento/locais/save/admin/1" class="btn btn-primary">
 				<strong><i class="glyphicon glyphicon-plus"></i> Novo Local</strong>
 			</a>
 		</div>

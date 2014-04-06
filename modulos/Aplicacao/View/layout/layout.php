@@ -34,15 +34,53 @@
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			    	<?php
+			    	// var_dump($this->getUri());
+			    	$uricompleta = $this->getUri()['modulo'] . "/" . $this->getUri()['controller'] . "/" . $this->getUri()['action'];
+			    	// var_dump($uricompleta);
+			    	$menu = array(
+			    		'Aplicacao/index/index' => array(
+			    			'url' => '/',
+			    			'titulo' => 'Inicio'
+			    		),
+			    		'Aplicacao/eventos/index' => array(
+			    			'url' => '/aplicacao/eventos',
+			    			'titulo' => 'Eventos'
+			    		)
+			    	);
+			    	// if ($this->getUri()['action'])
+			    	// var_dump($menu);
+			    	?>
 			    	<ul class="nav navbar-nav">
-			    		<li><a href="/">Ínicio</a></li>
-						<li class="active"><a href="/aplicacao/eventos">Eventos</a></li>
-						<?php						
+			    		<?php
+			    		foreach ($menu as $key => $value) {			    			
+			    		?>
+			    			<li <?php if ($uricompleta == $key) echo 'class="active"' ?>>
+			    				<a href="<?php echo $value['url']?>"><?php echo $value['titulo'] ?></a>
+			    			</li>
+			    		<?php
+			    		}
+			    		?>			    		
+						<?php												
 						if ($admin){
+							$menu = array(
+								'Gerenciamento/locais/index' => array(
+									'url' => '/gerenciamento/locais/index/admin/1',
+									'titulo' => 'Locais'
+								),								
+							);
+							foreach ($menu as $key => $value) {
 						?>
-							<li><a href="/gerenciamento/locais">Locais</a></li>
+							<li <?php if ($uricompleta == $key) echo 'class="active"' ?>>
+			    				<a href="<?php echo $value['url']?>"><?php echo $value['titulo'] ?></a>
+			    			</li>
+						<?php								
+							}
+						?>
+
+							<!-- <li><a href="/gerenciamento/locais">Locais</a></li>
 							<li><a href="#">Inscritos</a></li>
-							<li><a href="#">Usuários</a></li>
+							<li><a href="#">Usuários</a></li> -->
 						<?php
 						}
 						?>

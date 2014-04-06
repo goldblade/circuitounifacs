@@ -8,20 +8,26 @@ class LocaisController extends ActionController
 
 	public function indexAction()
 	{			
+		$admin = (int) $this->getParam('admin');
 		return self::renderHtml(array(
-		
+			'admin' => $admin
 		));
 	}
 
 	public function saveAction()
 	{		
+		$admin = (int) $this->getParam('admin');
 		return self::renderHtml(array(
+			'admin' => $admin
 		));
 	}
 
 	public function localsalvoAction()
 	{
-		return self::renderHtml(array());
+		$admin = (int) $this->getParam('admin');
+		return self::renderHtml(array(
+			'admin' => $admin
+		));
 	}
 	
 }

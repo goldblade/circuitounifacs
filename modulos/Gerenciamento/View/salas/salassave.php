@@ -11,10 +11,10 @@
 			<hr>
 		</div>		
 		<div class="col-sm-6 col-md-6 text-center">
-			<a href="/gerenciamento/salas/save" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-file"></i> Inserir nova sala</a>			
+			<a href="/gerenciamento/salas/save/admin/1" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-file"></i> Inserir nova sala</a>			
 		</div>
 		<div class="col-sm-6 col-md-6 text-center">
-			<a href="/gerenciamento/salas" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-cog"></i> Gerenciamento de salas</a>			
+			<a href="/gerenciamento/salas/index/admin/1" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-cog"></i> Gerenciamento de salas</a>			
 		</div>
 	</div>
 </div>

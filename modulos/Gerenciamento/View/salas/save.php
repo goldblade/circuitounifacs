@@ -5,7 +5,7 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-md-12 col-sm-12">
-			<form class="form-horizontal" role="form" action="/gerenciamento/salas/salassave" method="post">
+			<form class="form-horizontal" role="form" action="/gerenciamento/salas/salassave/admin/1" method="post">
 				<input type="hidden" name="local" value="">
 				<div class="form-group">
 					<label for="nome" class="col-xs-12 col-md-2 col-sm-3 control-label">Nome</label>

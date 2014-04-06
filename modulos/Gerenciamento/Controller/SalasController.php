@@ -8,19 +8,25 @@ class SalasController extends ActionController
 
 	public function indexAction()
 	{			
+		$admin = (int) $this->getParam('admin');
 		return self::renderHtml(array(
-		
+			'admin' => $admin
 		));
 	}
 
 	public function saveAction()
 	{		
+		$admin = (int) $this->getParam('admin');
 		return self::renderHtml(array(
+			'admin' => $admin
 		));
 	}	
 	
 	public function salassaveAction()
 	{
-		return self::renderHtml();
+		$admin = (int) $this->getParam('admin');
+		return self::renderHtml(array(
+			'admin' => $admin
+		));
 	}
 }
