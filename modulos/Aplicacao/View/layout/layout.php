@@ -38,24 +38,9 @@
 			    	// var_dump($this->getUri());
 			    	$uricompleta = $this->getUri()['modulo'] . "/" . $this->getUri()['controller'] . "/" . $this->getUri()['action'];
 			    	// var_dump($uricompleta);
-			    	if ($admin) {			    		
-			    		$menu = array(
-				    			'Aplicacao/index/index' => array(
-					    			'url' => '/',
-					    			'titulo' => 'Inicio'
-					    		),					    		
-								'Gerenciamento/locais/index' => array(
-									'url' => '/gerenciamento/locais/index/admin/1',
-									'titulo' => 'Locais'
-								),
-								'Auth/login/sair' => array(
-									//'url' => '/auth/login/sair',
-									'url' => '/',
-									'titulo' => 'Sair'
-								)			
-						);
-			    	} else {
-			    		$menu = array(
+			    				    	
+			    	//menu padrao
+			    	$menu = array(
 				    		'Aplicacao/index/index' => array(
 				    			'url' => '/',
 				    			'titulo' => 'Inicio'
@@ -69,7 +54,30 @@
 				    			'titulo' => 'Entrar'
 				    		),			    		
 			    		);	
-			    	}			    	
+			    	// verifica se variavel admin existe
+			    	if (isset($admin)) {
+
+			    		//verifica se o admin tem valor 1 = validado
+			    		if ($admin == 1) {
+			    			// menu para perfil administrativo
+			    			$menu = array(
+				    			'Aplicacao/index/index' => array(
+					    			'url' => '/aplicacao/index/index/admin/1',
+					    			'titulo' => 'Inicio'
+					    		),					    		
+								'Gerenciamento/locais/index' => array(
+									'url' => '/gerenciamento/locais/index/admin/1',
+									'titulo' => 'Locais'
+								),
+								'Auth/login/sair' => array(
+									//'url' => '/auth/login/sair',
+									'url' => '/',
+									'titulo' => 'Sair'
+								)			
+							);	
+			    		}
+			    		
+			    	} 			    	
 			    	// if ($this->getUri()['action'])
 			    	// var_dump($menu);
 			    	?>
