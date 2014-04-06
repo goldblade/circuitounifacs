@@ -34,7 +34,11 @@
   border-top-right-radius: 0;
 }
 </style>
-<div class="container">	
+<div class="container">
+    <ol class="breadcrumb">
+        <li><a href="/">Ínicio</a></li>     
+        <li class="active">Login do sistema</li>
+    </ol>	
     <div class="page-header">
         <h1>Login <small>do sistema</small></h1>
     </div>

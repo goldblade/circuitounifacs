@@ -1,4 +1,11 @@
 <div class="container">
+	<ol class="breadcrumb">
+  		<li><a href="/">Ínicio</a></li>
+  		<li><a href="#">Gerenciamento</a></li>
+  		<li><a href="#">Locais</a></li>
+  		<li><a href="#">Salas para prédio X</a></li>
+  		<li class="active">Nova sala para prédio X</li>
+	</ol>
 	<div class="page-header">
 		<h1>Nova <small>sala</small></h1>
 	</div>
