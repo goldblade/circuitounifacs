@@ -65,9 +65,17 @@
 					    			'url' => '/aplicacao/index/index/usuario/1',
 					    			'titulo' => 'Inicio'
 					    		),					    		
+					    		'Gerenciamento/eventos/index' => array(
+									'url' => '/gerenciamento/eventos/index/usuario/1',
+									'titulo' => 'Eventos'
+								),
 								'Gerenciamento/locais/index' => array(
 									'url' => '/gerenciamento/locais/index/usuario/1',
 									'titulo' => 'Locais'
+								),
+								'Gerenciamento/usuario/index' => array(
+									'url' => '/gerenciamento/usuario/index/usuario/1',
+									'titulo' => 'Usuários'
 								),
 								'Auth/login/sair' => array(
 									//'url' => '/auth/login/sair',

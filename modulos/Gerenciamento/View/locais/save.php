@@ -2,8 +2,8 @@
 	
 	<ol class="breadcrumb">
   		<li><a href="/">Ínicio</a></li>
-  		<li><a href="#">Gerenciamento</a></li>
-  		<li><a href="#">Locais</a></li>
+  		<li><a href="/gerenciamento/index/index/usuario/1">Gerenciamento</a></li>
+  		<li><a href="/gerenciamento/locais/index/usuario/1">Locais</a></li>
   		<li class="active">Novo local</li>
 	</ol>
 

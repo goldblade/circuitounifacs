@@ -42,7 +42,7 @@
     <div class="page-header">
         <h1>Login <small>do sistema</small></h1>
     </div>
-	<form class="form-signin" role="form" method="post" action="/gerenciamento/index/index/admin/1">
+	<form class="form-signin" role="form" method="post" action="/gerenciamento/index/index/usuario/1">
   <!-- <form class="form-signin" role="form" method="post" action="/auth/login"> -->
         <!-- <h2 class="form-signin-heading">Digite as credenciais</h2> -->
         <input type="email" class="form-control" placeholder="Seu Email" required autofocus>

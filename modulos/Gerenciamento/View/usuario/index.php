@@ -3,16 +3,16 @@
 	<ol class="breadcrumb">
   		<li><a href="/">Ínicio</a></li>
   		<li><a href="/gerenciamento/index/index/usuario/1">Gerenciamento</a></li>
-  		<li class="active">Locais</li>
+  		<li class="active">Usuários</li>
 	</ol>
 
 	<div class="page-header">
-		<h1>Locais <small>físicos</small></h1>
+		<h1>Usuários <small>do sistema</small></h1>
 	</div>	
 	<div class="row">
 		<div class="col-xs-12 col-md-9 col-sm-6">			
-			<a href="/gerenciamento/locais/save/usuario/1" class="btn btn-primary">
-				<strong><i class="glyphicon glyphicon-plus"></i> Novo Local</strong>
+			<a href="/gerenciamento/usuario/save/usuario/1" class="btn btn-primary">
+				<strong><i class="glyphicon glyphicon-plus"></i> Novo usuário</strong>
 			</a>
 		</div>
 		<div class="col-xs-12 col-md-3 col-sm-6">
@@ -33,9 +33,8 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>Campus X</td>
-					<td class="text-center">
-						<a href="/gerenciamento/salas/index/usuario/1" class="btn btn-info"><i class="glyphicon glyphicon-home"></i> Salas</a>
+					<td>Admin</td>
+					<td class="text-center">						
 						<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
 						<a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
 					</td>

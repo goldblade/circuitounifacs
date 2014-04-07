@@ -63,6 +63,10 @@ http://localhost/circuitounifacs - Errado
 
 Correções serão feitas para que funcione em qualquer diretório ou sub-dir.
 
+### Criando uma nova funcionalidade
+
+[Exemplo nova funcionalidade](https://github.com/goldblade/circuitounifacs/wiki/Criando-uma-nova-funcionalidade)
+
 
 ### Componentes da Equipe
 
