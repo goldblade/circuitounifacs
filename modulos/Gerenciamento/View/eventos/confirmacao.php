@@ -18,13 +18,16 @@
 			<h2>O que você gostaria de fazer agora?</h2>
 			<hr>
 		</div>
-		<div class="col-sm-4 col-md-4 text-center">
+		<div class="col-sm-3 col-md-3 text-center">
 			<a href="/gerenciamento/atividades/save/evento/id/usuario/1" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-pushpin"></i> Inserir Atividades</a>
 		</div>
-		<div class="col-sm-4 col-md-4 text-center">
+		<div class="col-sm-3 col-md-3 text-center">
+			<a href="/gerenciamento/coordenadores/save/evento/id/usuario/1" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-user"></i> Inserir Coordenadores</a>
+		</div>
+		<div class="col-sm-3 col-md-3 text-center">
 			<a href="/gerenciamento/eventos/save/usuario/1" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-file"></i> Inserir novo evento</a>
 		</div>
-		<div class="col-sm-4 col-md-4 text-center">
+		<div class="col-sm-3 col-md-3 text-center">
 			<a href="/gerenciamento/eventos/index/usuario/1" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-cog"></i> Gerenciamento de eventos</a>	
 		</div>
 	</div>
