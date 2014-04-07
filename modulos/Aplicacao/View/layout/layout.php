@@ -110,7 +110,7 @@
 			    	<ul class="nav navbar-nav">
 			    		<?php
 			    		foreach ($menu as $key => $value) {	    			
-			    			if(isset($value['submenu']) == 'submenu'){
+			    			if(isset($value['submenu'])){
 			    				?>
 			    				<li class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $value['url'] ?>" ><?php echo $value['titulo'] ?></a>
