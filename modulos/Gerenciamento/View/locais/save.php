@@ -13,7 +13,7 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-md-12 col-sm-12">
-			<form class="form-horizontal" role="form" action="/gerenciamento/locais/localsalvo/admin/1" method="post">
+			<form class="form-horizontal" role="form" action="/gerenciamento/locais/localsalvo/usuario/1" method="post">
 				<div class="form-group">
 					<label for="nome" class="col-xs-12 col-sm-3 col-md-2 control-label">Nome</label>
 					<div class="col-xs-12 col-sm-9 col-md-4">

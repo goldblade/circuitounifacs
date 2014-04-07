@@ -11,7 +11,7 @@
 	</div>	
 	<div class="row">
 		<div class="col-xs-12 col-md-9 col-sm-6">			
-			<a href="/gerenciamento/locais/save/admin/1" class="btn btn-primary">
+			<a href="/gerenciamento/locais/save/usuario/1" class="btn btn-primary">
 				<strong><i class="glyphicon glyphicon-plus"></i> Novo Local</strong>
 			</a>
 		</div>
@@ -35,7 +35,7 @@
 				<tr>
 					<td>Campus X</td>
 					<td class="text-center">
-						<a href="/gerenciamento/salas/index/admin/1" class="btn btn-info"><i class="glyphicon glyphicon-home"></i> Salas</a>
+						<a href="/gerenciamento/salas/index/usuario/1" class="btn btn-info"><i class="glyphicon glyphicon-home"></i> Salas</a>
 						<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
 						<a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
 					</td>

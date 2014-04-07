@@ -47,7 +47,7 @@
 				    		),
 				    		'Aplicacao/eventos/index' => array(
 				    			'url' => '/aplicacao/eventos',
-				    			'titulo' => 'Eventos'
+				    			'titulo' => 'Eventos',
 				    		),
 				    		'Auth/login/index' => array(
 				    			'url' => '/auth/login',
@@ -55,18 +55,18 @@
 				    		),			    		
 			    		);	
 			    	// verifica se variavel admin existe
-			    	if (isset($admin)) {
-
+			    	if(isset($usuario)) {
+			    	
 			    		//verifica se o admin tem valor 1 = validado
-			    		if ($admin == 1) {
+			    		if ($usuario == 1) {
 			    			// menu para perfil administrativo
 			    			$menu = array(
 				    			'Aplicacao/index/index' => array(
-					    			'url' => '/aplicacao/index/index/admin/1',
+					    			'url' => '/aplicacao/index/index/usuario/1',
 					    			'titulo' => 'Inicio'
 					    		),					    		
 								'Gerenciamento/locais/index' => array(
-									'url' => '/gerenciamento/locais/index/admin/1',
+									'url' => '/gerenciamento/locais/index/usuario/1',
 									'titulo' => 'Locais'
 								),
 								'Auth/login/sair' => array(
@@ -76,19 +76,63 @@
 								)			
 							);	
 			    		}
-			    		
-			    	} 			    	
+			    		if($usuario == 2){
+				    		$menu = array(
+					    		'Aplicacao/index/index' => array(
+					    			'url' => '/aplicacao/index/index/usuario/2',
+					    			'titulo' => 'Inicio'
+					    		),
+					    		'Aplicacao/eventos/index' => array(
+					    			'url' => '#',
+					    			'titulo' => 'Eventos',
+					    			'submenu' => array(
+					    				'Aplicacao/eventos/inscricoes' => array(
+						    				'url' => '/aplicacao/eventos/inscricoes/usuario/2',
+					    					'titulo' => 'Minhas Inscrições'
+					    				),
+					    				'Aplicacao/eventos/index' => array(
+							    			'url' => '/aplicacao/eventos/index/usuario/2',
+							    			'titulo' => 'Programação'
+							    		)
+				    				)
+					    		),
+					    		'Auth/login/sair' => array(
+									//'url' => '/auth/login/sair',
+									'url' => '/',
+									'titulo' => 'Sair'
+								)			    		
+				    		);
+				    	}
+			    	}			    	
 			    	// if ($this->getUri()['action'])
 			    	// var_dump($menu);
 			    	?>
 			    	<ul class="nav navbar-nav">
 			    		<?php
-			    		foreach ($menu as $key => $value) {			    			
-			    		?>
+			    		foreach ($menu as $key => $value) {	    			
+			    			if(isset($value['submenu']) == 'submenu'){
+			    				?>
+			    				<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $value['url'] ?>" ><?php echo $value['titulo'] ?></a>
+				    				<ul class="dropdown-menu">
+				    				<?php
+				    				foreach ($value['submenu'] as $keySub => $valueSub) {
+				    					?>
+										<li><a href="<?php echo $valueSub['url'] ?>"><?php echo $valueSub['titulo'] ?></a></li>
+				    					<?php
+				    				}
+				    				//var_dump($value);
+				    				?>
+									</ul>
+				    			</li>
+			    				<?php
+			    			} else {
+			    			?>
 			    			<li <?php if ($uricompleta == $key) echo 'class="active"' ?>>
 			    				<a href="<?php echo $value['url']?>"><?php echo $value['titulo'] ?></a>
 			    			</li>
-			    		<?php
+			    			<?php
+			    			}
 			    		}
 			    		?>			    		
 						
