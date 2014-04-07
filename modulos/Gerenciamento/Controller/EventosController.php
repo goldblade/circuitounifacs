@@ -14,4 +14,22 @@ class EventosController extends ActionController
 		));
 	}
 
+	public function saveAction()
+	{			
+		$usuario = (int) $this->getParam('usuario');
+		
+		return self::renderHtml(array(
+			'usuario' => $usuario
+		));
+	}
+
+	public function confirmacaoAction()
+	{
+		$usuario = (int) $this->getParam('usuario');
+		
+		return self::renderHtml(array(
+			'usuario' => $usuario
+		));
+	}
+
 }
