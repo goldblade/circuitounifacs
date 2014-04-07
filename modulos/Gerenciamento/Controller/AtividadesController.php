@@ -24,4 +24,13 @@ class AtividadesController extends ActionController
 		));
 	}
 
+	public function agendamentoAction()
+	{
+		$usuario = (int) $this->getParam('usuario');
+		
+		return self::renderHtml(array(
+			'usuario' => $usuario
+		));
+	}
+
 }
