@@ -6,6 +6,15 @@ use Unifacs\Core\Controller\ActionController;
 class AtividadesController extends ActionController
 {
 	
+	public function indexAction()
+	{
+		$usuario = (int) $this->getParam('usuario');
+		
+		return self::renderHtml(array(
+			'usuario' => $usuario
+		));
+	}
+
 	public function saveAction()
 	{			
 		$usuario = (int) $this->getParam('usuario');
@@ -31,6 +40,15 @@ class AtividadesController extends ActionController
 		return self::renderHtml(array(
 			'usuario' => $usuario
 		));
+	}
+
+	public function saveagendamentoAction()
+	{
+		$usuario = (int) $this->getParam('usuario');
+		
+		return self::renderHtml(array(
+			'usuario' => $usuario
+		));	
 	}
 
 }

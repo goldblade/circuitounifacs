@@ -11,7 +11,7 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-md-12 col-sm-12">
-			<form class="form-horizontal" role="form" action="/gerenciamento/atividades/confirmacao/usuario/1" method="post">
+			<form class="form-horizontal" role="form" action="/gerenciamento/atividades/saveagendamento/usuario/1" method="post">
 				<input type="hidden" name="espaco_id">				
 				<div class="form-group">
     				<label for="data_inicio" class="col-xs-12 col-sm-3 col-md-2 control-label">Data/Hora Início</label>
