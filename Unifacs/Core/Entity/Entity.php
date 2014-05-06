@@ -11,6 +11,19 @@ class Entity extends TableGateway
 {
 	
 
+	/**
+	 * Seta um mapa de colunas da tabela.
+	 * Adicionalmente, com base no mapa, seta o array de colunas da tabela.
+	 *
+	 * @param array $map : um "mapa" para os campos da tabela, da forma:
+	 * 	array (
+	 *		name => 'nome do campo',
+	 * 		type => 'tipo SQL do campo',	
+	 *		is_primary => 'se o campo é parte da chave primária da tabela (boolean)'
+	 *	)
+	 * @throws Exception : caso nenhuma chave primária seja informada
+	 */
+
 	public function __construct()
 	{
 		//echo "CARREGOU CLASSE ENTITY";
