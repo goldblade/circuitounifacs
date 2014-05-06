@@ -175,7 +175,7 @@ class Conexao
 	 * @param array $data : os dados para inserir
 	 * @return int : o número de linhas inseridas com sucesso
 	 */
-	public function insert($tableName, array $data) {
+	public function insert($tableName, array $data) {		
 		$this->currOp = self::INSERT;
 		$cols = array_keys($data);
 
