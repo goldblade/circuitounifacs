@@ -3,10 +3,11 @@ namespace modulos\Gerenciamento\Controller;
 
 use Unifacs\Core\Controller\ActionController;
 
-class EventosController extends ActionController
+class AtividadesController extends ActionController
 {
+	
 	public function indexAction()
-	{			
+	{
 		$usuario = (int) $this->getParam('usuario');
 		
 		return self::renderHtml(array(
@@ -30,6 +31,24 @@ class EventosController extends ActionController
 		return self::renderHtml(array(
 			'usuario' => $usuario
 		));
+	}
+
+	public function agendamentoAction()
+	{
+		$usuario = (int) $this->getParam('usuario');
+		
+		return self::renderHtml(array(
+			'usuario' => $usuario
+		));
+	}
+
+	public function saveagendamentoAction()
+	{
+		$usuario = (int) $this->getParam('usuario');
+		
+		return self::renderHtml(array(
+			'usuario' => $usuario
+		));	
 	}
 
 }
