@@ -19,8 +19,19 @@ class Usuario extends Entity
 	 */
 	protected $idColName = 'id';
 
-	public function __construct()
-	{		
-		parent::__construct();
+	/**
+	 * nome
+	 */
+	
+	protected $nome;
+
+	public function getNome()
+	{
+		return $this->nome;
+	}
+	
+	public function setNome($value)
+	{
+		$this->nome = $value;
 	}
 }
