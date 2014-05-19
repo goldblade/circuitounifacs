@@ -1,9 +1,9 @@
 <?php
 return array(
 	'db' => array(
-		'host' => 'localhost',
-		'usuario' => 'root',
-		'senha' => 'super123',
+		'host' => 'servidor',
+		'usuario' => 'teste',
+		'senha' => 'teste',
 		'database' => 'circuitounifacs'
 	),
 );

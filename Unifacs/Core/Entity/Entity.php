@@ -7,9 +7,13 @@ use Unifacs\Core\Db\Conexao;
  * Class Entity
  */
 
-class Entity extends TableGateway
+abstract class Entity extends TableGateway
 {
 	
+
+	protected $primaryKeyField = 'id';
+
+	protected $tableName;
 
 	/**
 	 * Seta um mapa de colunas da tabela.
@@ -28,12 +32,13 @@ class Entity extends TableGateway
 	{
 		//echo "CARREGOU CLASSE ENTITY";
 		//public function __construct($name, Driver $driver, array $map) {
-		$map = array(
-			name => 'id',
-	  		type => 'int',	
-	 		is_primary => true
-		);
-		//$this->tableName = 'usuario';
-		parent::__construct($this->tableName, new Conexao(), $map);
+		// $map = array(
+		// 	name => 'id',
+	 //  		type => 'int',	
+	 // 		is_primary => true
+		// );
+		// $this->tableName = 'usuario';
+		// var_dump($this->tableName);
+		parent::__construct($this->tableName, new Conexao());
 	}
 }
