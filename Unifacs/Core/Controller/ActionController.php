@@ -15,6 +15,8 @@ class ActionController
 
 	private $param;
 
+	//private $mensagem;
+
 	public function setUri($value)
 	{
 		$this->uri = $value;
@@ -52,6 +54,8 @@ class ActionController
 				} else {
 					echo "arquivo nao existe";
 				}
+				//destruir a sessao mensagem
+				//session_destroy('msg');
 			}
 		//} 		
 		//var_dump($dados);
@@ -90,5 +94,30 @@ class ActionController
 	public function getUri()
 	{
 		return $this->uri;
+	}
+
+	/**
+	 * Mensagens 
+	 */
+	public function mensagem($mensagem = array())
+	{
+		ob_start();
+		session_start('msg');
+		$_SESSION["mensagem"] = $mensagem;
+	}
+
+	public function getMensagem()
+	{
+		//ob_start();
+		if (session_status() == PHP_SESSION_NONE) {
+    			session_start('msg');
+		}		
+		if (isset($_SESSION["mensagem"])){
+			//$msg = $_SESSION["mensagem"];
+			//unset($_SESSION["mensagem"]);
+			return $_SESSION["mensagem"];
+		}
+					
+		
 	}
 }

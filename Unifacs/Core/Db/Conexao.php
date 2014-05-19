@@ -317,7 +317,7 @@ class Conexao
 		$this->stmt = $this->prepare($sqlStmt);
 
 		if($this->stmt === false) {
-			throw new \Exception($this->connection->error);
+			throw new \Exception($this->conn->error);
 		}
 		return $this->execute($params);
 	}
@@ -493,7 +493,7 @@ class Conexao
 	 * @return int
 	 */
  	public function lastInsertId() {
-		return $this->connection->insert_id;
+		return $this->conn->insert_id;
 	}
 
 	/**

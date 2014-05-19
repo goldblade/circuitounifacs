@@ -21,8 +21,7 @@ class Usuario extends Entity
 
 	/**
 	 * nome
-	 */
-	
+	 */	
 	protected $nome;
 
 	public function getNome()

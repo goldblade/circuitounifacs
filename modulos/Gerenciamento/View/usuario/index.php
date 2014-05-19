@@ -2,16 +2,48 @@
 	
 	<ol class="breadcrumb">
   		<li><a href="/">Ínicio</a></li>
-  		<li><a href="/gerenciamento/index/index/usuario/1">Gerenciamento</a></li>
+  		<li><a href="/gerenciamento/index/index">Gerenciamento</a></li>
   		<li class="active">Usuários</li>
 	</ol>
+
+	<?php	
+	//var_dump($this->getMensagem());
+	if (count($this->getMensagem()) > 0){
+	?>
+		<div class="row">
+			<div class="col-md-12">
+				<?php			
+				foreach ($this->getMensagem() as $key => $value):				
+				?>			
+					<div class="alert alert-<?php
+					if ($key == 'error') {
+						echo 'danger';
+					}
+					if ($key == 'warning') {
+						echo 'warning';
+					}
+					if ($key == 'info'){
+						echo 'info';
+					}
+					if ($key == 'success'){
+						echo 'success';
+					}
+					?>"><?php echo $value;?></div>
+				<?php
+				endforeach;
+				?>
+			</div>
+		</div>
+	<?php 
+	}
+	?>
 
 	<div class="page-header">
 		<h1>Usuários <small>do sistema</small></h1>
 	</div>	
 	<div class="row">
 		<div class="col-xs-12 col-md-9 col-sm-6">			
-			<a href="/gerenciamento/usuario/save/usuario/1" class="btn btn-primary">
+			<a href="/gerenciamento/usuario/save" class="btn btn-primary">
 				<strong><i class="glyphicon glyphicon-plus"></i> Novo usuário</strong>
 			</a>
 		</div>
