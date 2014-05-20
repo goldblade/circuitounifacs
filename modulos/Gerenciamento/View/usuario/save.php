@@ -9,7 +9,7 @@
 
 	<?php	
 	//var_dump($this->getMensagem());
-	if (count($this->getMensagem()) > 0){
+	if ($this->temMensagem()){		
 	?>
 		<div class="row">
 			<div class="col-md-12">

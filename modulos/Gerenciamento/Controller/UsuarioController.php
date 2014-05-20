@@ -42,8 +42,9 @@ class UsuarioController extends ActionController
 				$novoRegistro->save();
 				$this->mensagem(array(
 					'success' => 'Usuário Salvo com sucesso!!'
-				));
-				header("Location: /gerenciamento/usuario");
+				));				
+				//http_response_code(301);
+				header("Location: /gerenciamento/usuario", 301);
 			}						
 		}
 		// $usuarioteste = new Usuario;
@@ -62,7 +63,7 @@ class UsuarioController extends ActionController
 		
 		
 		return self::renderHtml(array(
-			'mensagem' => $mensagem
+			
 		));
 	}
 

@@ -101,23 +101,40 @@ class ActionController
 	 */
 	public function mensagem($mensagem = array())
 	{
-		ob_start();
-		session_start('msg');
-		$_SESSION["mensagem"] = $mensagem;
+		ob_start();		
+		//if (session_id() === "") { session_start(); }		
+		session_start();
+		session_name('msg');
+		//$sid = session_id('msg');		
+		$_SESSION["mensagem"] = $mensagem;		
 	}
 
 	public function getMensagem()
 	{
-		//ob_start();
-		if (session_status() == PHP_SESSION_NONE) {
-    			session_start('msg');
-		}		
-		if (isset($_SESSION["mensagem"])){
-			//$msg = $_SESSION["mensagem"];
+		//$sid = session_id();
+		//var_dump($sid);
+		//ob_start();				
+		if(session_status() != PHP_SESSION_ACTIVE)
+			session_start();		
+		//session_start();
+		//var_dump(session_status());				
+		var_dump(http_response_code());		
+		if (isset($_SESSION["mensagem"])){		
+			$msg = $_SESSION["mensagem"];
+			var_dump("chamou aqui");
 			//unset($_SESSION["mensagem"]);
-			return $_SESSION["mensagem"];
-		}
-					
-		
+			return $msg;
+		}							
+	}
+
+	public function temMensagem()
+	{
+		if(session_status() != PHP_SESSION_ACTIVE)
+			session_start();
+
+		if ( isset($_SESSION["mensagem"]) )
+			return true;
+
+		return false;
 	}
 }
