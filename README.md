@@ -67,6 +67,10 @@ Correções serão feitas para que funcione em qualquer diretório ou sub-dir.
 
 [Exemplo nova funcionalidade](https://github.com/goldblade/circuitounifacs/wiki/Criando-uma-nova-funcionalidade)
 
+### TableGateway
+
+[Tutorial](http://imasters.com.br/linguagens/php/padroes-tabledatagateway-e-tablerowgateway-teoria-e-pratica/)
+
 
 ### Componentes da Equipe
 

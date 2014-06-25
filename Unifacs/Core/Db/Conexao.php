@@ -399,14 +399,41 @@ class Conexao
 		$this->bindParams($params);
 		$ret = $this->stmt->execute();
 		if($ret === false) {
-			throw new \Exception('Error # ' . $this->stmt->errno .
-				': ' . $this->stmt->error);
+			throw new \Exception('Error # ' . $this->stmt->errno . ': ' . $this->stmt->error);
+			// $error = new \modulos\Error\Controller\IndexController('Error # ' . $this->stmt->errno . ': ' 
+			// 	. $this->stmt->error);
+   //      	$error->setUri(array(
+   //          		'modulo' => 'Error',
+   //          	'controller' => 'index',
+   //          	'action' => 'index'
+   //      	));
+   //      	$error->indexAction();die();
 		}
+		// try {
+  //       	$ret = $this->stmt->execute();
+  //   	} catch (\Exception $e) {
+  //       	$error = new \modulos\Error\Controller\IndexController('Error # ' . $this->stmt->errno .
+		// 		': ' . $this->stmt->error);
+  //       	$error->setUri(array(
+  //           	'modulo' => 'Error',
+  //           	'controller' => 'index',
+  //           	'action' => 'index'
+  //       	));
+  //       	$error->indexAction();
+  //   	}
 
 		// Obtenção dos metadados do select, tais como as colunas retornadas
 		$metaData = $this->stmt->result_metadata();
 		if($this->stmt->errno) {
 			throw new \Exception('Erro na obtenção dos metadados:' . $this->stmt->error);
+			// $error = new \modulos\Error\Controller\IndexController('Erro na obtenção dos metadados:' 
+			// 	. $this->stmt->error);
+   //      	$error->setUri(array(
+   //          		'modulo' => 'Error',
+   //          	'controller' => 'index',
+   //          	'action' => 'index'
+   //      	));
+   //      	$error->indexAction();
 		}
 		// Metadados só são retornados em operações de SELECT
 		if($metaData !== false) {

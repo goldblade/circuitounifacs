@@ -15,7 +15,7 @@ class ActionController
 
 	private $param;
 
-	//private $mensagem;
+	// private $mensagem;
 
 	public function setUri($value)
 	{
@@ -99,42 +99,61 @@ class ActionController
 	/**
 	 * Mensagens 
 	 */
+	// public function mensagem($mensagem = array())
 	public function mensagem($mensagem = array())
 	{
 		ob_start();		
 		//if (session_id() === "") { session_start(); }		
-		session_start();
-		session_name('msg');
-		//$sid = session_id('msg');		
-		$_SESSION["mensagem"] = $mensagem;		
+		session_name('msg1');
+		session_start();			
+		//$sid = session_id('msg');						
+		$_SESSION["mensagem"][] = $mensagem;
+		// array_unique($_SESSION["mensagem"]);
+		// var_dump($_SESSION['mensagem']);
+		// session_write_close();
 	}
 
 	public function getMensagem()
-	{
-		//$sid = session_id();
-		//var_dump($sid);
-		//ob_start();				
-		if(session_status() != PHP_SESSION_ACTIVE)
-			session_start();		
-		//session_start();
-		//var_dump(session_status());				
-		var_dump(http_response_code());		
-		if (isset($_SESSION["mensagem"])){		
-			$msg = $_SESSION["mensagem"];
-			var_dump("chamou aqui");
-			//unset($_SESSION["mensagem"]);
-			return $msg;
-		}							
+	{		
+		if (isset($_SESSION["mensagem"])){	
+			// var_dump($_SESSION["mensagem"]);
+			// var_dump(array_unique($_SESSION["mensagem"]));
+			$msg = self::super_unique($_SESSION["mensagem"]);
+			if ($_SERVER['REQUEST_METHOD'] == 'GET')
+				unset($_SESSION["mensagem"]);
+			if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+				if ($_SESSION["mensagem"][0]['error']){
+					// var_dump('existe erro, limpando as variaveis');
+					unset($_SESSION["mensagem"]);
+				}				
+			}						
+			return $msg;						
+		}
 	}
 
 	public function temMensagem()
-	{
-		if(session_status() != PHP_SESSION_ACTIVE)
+	{		
+		if(session_status() != PHP_SESSION_ACTIVE){
+			session_name('msg1');
 			session_start();
-
+			// var_dump("iniciando ");
+		}
+						
 		if ( isset($_SESSION["mensagem"]) )
 			return true;
 
 		return false;
+	}	
+
+	public function super_unique($array)
+	{
+		$result = array_map("unserialize", array_unique(array_map("serialize", $array)));
+		foreach ($result as $key => $value){
+	    	if ( is_array($value) ){
+	      		$result[$key] = self::super_unique($value);
+	    	}
+	  	}
+
+	  	return $result;
 	}
 }

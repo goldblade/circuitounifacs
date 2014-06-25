@@ -1,3 +1,15 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.dados').on("click", ".btnapagar", function(event){
+            event.preventDefault();
+            url = $(this).attr('href');            
+            var r = confirm("Tem certeza que deseja remover o registro?");
+            if (r){            	
+            	window.location.href = url;
+            } 
+        });
+	});
+</script>
 <div class="container">
 	
 	<ol class="breadcrumb">
@@ -7,29 +19,33 @@
 	</ol>
 
 	<?php	
-	if ($this->temMensagem()){
+	if ($this->temMensagem()){		
 	?>
 		<div class="row">
 			<div class="col-md-12">
-				<?php			
-				foreach ($this->getMensagem() as $key => $value):				
+				<?php
+				// var_dump($this->getMensagem()->mensagem);	
+				foreach ($this->getMensagem() as $key => $value):	
+					foreach ($value as $key2 => $value2):						
 				?>			
 					<div class="alert alert-<?php
-					if ($key == 'error') {
+					if ($key2 == 'error') {
 						echo 'danger';
 					}
-					if ($key == 'warning') {
+					if ($key2 == 'warning') {
 						echo 'warning';
 					}
-					if ($key == 'info'){
+					if ($key2 == 'info'){
 						echo 'info';
 					}
-					if ($key == 'success'){
+					if ($key2 == 'success'){
 						echo 'success';
 					}
-					?>"><?php echo $value;?></div>
+					?>"><?php echo $value2;?></div>
 				<?php
+					endforeach;
 				endforeach;
+				// unset($_SESSION['mensagem']);
 				?>
 			</div>
 		</div>
@@ -62,14 +78,29 @@
 				</tr>
 				
 			</thead>
-			<tbody>
-				<tr>
-					<td>Admin</td>
-					<td class="text-center">						
-						<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
-						<a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
-					</td>
-				</tr>
+			<tbody class="dados">
+				<?php
+				foreach ($dados as $dado):
+				?>
+					<tr>
+						<td>
+							<?php
+							echo $dado->toArray()['nome'];
+							?>
+						</td>
+						<td class="text-center">						
+							<a href="/gerenciamento/usuario/save/id/<?php
+							echo $dado->toArray()['id'];
+							?>" 
+							class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
+							<a href="/gerenciamento/usuario/apagar/id/<?php 
+							echo $dado->toArray()['id'];?>" 
+							class="btn btn-danger btnapagar"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
+						</td>
+					</tr>
+				<?php
+				endforeach;
+				?>
 			</tbody>
 		</table>
 	</div>
