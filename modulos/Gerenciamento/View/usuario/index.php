@@ -8,6 +8,29 @@
             	window.location.href = url;
             } 
         });
+        $( "#busca" ).submit(function( event ) {            
+            event.preventDefault();
+            // var query = $(this).serialize(); 
+            var query = $("input[name=q]").val();
+            $.ajax({
+                type : "POST",
+                data : { q:query },
+                url : $(this).attr('action'),
+                success : function(result){
+                    $(".dados").html(result);
+                },
+                beforeSend : function(){
+                    $(".dados").html('');
+                    $(".dados").hide();
+                    $(".loading").show();
+                }, 
+                complete : function(msg){                    
+                    $(".loading").hide();
+                    $(".dados").show();                    
+                } 
+            })
+        });
+        
 	});
 </script>
 <div class="container">
@@ -63,8 +86,8 @@
 			</a>
 		</div>
 		<div class="col-xs-12 col-md-3 col-sm-6">
-			<form action="#" role="form" class="form-inline">
-				<input type="text" class="form-control" placeholder="Pesquisar">
+			<form id="busca" action="/gerenciamento/usuario/busca" role="form" class="form-inline" method="post">
+				<input type="text" class="form-control" placeholder="Pesquisar" name="q">
 			</form>		
 		</div>
 		<hr class="clean">

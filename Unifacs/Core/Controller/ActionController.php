@@ -32,6 +32,12 @@ class ActionController
 		//if ($this->uri['modulo'] == "Aplicacao"){
 			if ($this->terminal) {
 				//carregando sem layout padrao
+				$this->conteudo = self::getFile(getcwd() . "/modulos/" 
+					. $this->uri['modulo'] . "/View/" . $this->uri['controller'] . "/" 
+					. $this->uri['action'] .".php", $dados);
+				return include getcwd() . "/modulos/"
+					. $this->uri['modulo'] . "/View/" . $this->uri['controller'] . "/" 
+					. $this->uri['action'] .".php";				
 			} else {
 				//carregando com layout padrao				
 				//verificando se arquivo de layout padrao existe				
@@ -155,5 +161,15 @@ class ActionController
 	  	}
 
 	  	return $result;
+	}
+
+	public function getTerminal()
+	{
+		return $this->terminal;
+	}
+	
+	public function setTerminal($value)
+	{
+		$this->terminal = $value;
 	}
 }
