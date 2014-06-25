@@ -89,7 +89,10 @@
 							?>
 						</td>
 						<td class="text-center">						
-							<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
+							<a href="/gerenciamento/usuario/save/id/<?php
+							echo $dado->toArray()['id'];
+							?>" 
+							class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
 							<a href="/gerenciamento/usuario/apagar/id/<?php 
 							echo $dado->toArray()['id'];?>" 
 							class="btn btn-danger btnapagar"><i class="glyphicon glyphicon-trash"></i> Apagar</a>

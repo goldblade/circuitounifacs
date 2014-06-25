@@ -27,6 +27,12 @@ class UsuarioController extends ActionController
 	public function saveAction()
 	{			
 		$id = (int) $this->getParam('id');
+		$dados = null;
+		if ($id > 0){
+			//salvando e editando.. buscar dados no banco
+			$usuario = new Usuario;
+			$dados = $usuario->getById($id);			
+		}
 		$mensagem = array();
 
 		if ($_POST){			
@@ -70,7 +76,7 @@ class UsuarioController extends ActionController
 				$validado = false;
 			} 
 
-			if ($_POST['senha'] == ''){
+			if (($_POST['senha'] == '') && ($_POST['id'] == '')){
 				$this->mensagem(array(
 					'error' => 'Campo Senha não pode ficar vazio'
 				));
@@ -98,17 +104,49 @@ class UsuarioController extends ActionController
 				$validado = false;
 			}
 
-			if ($validado){
-				$usuario = new Usuario;				
-				$novoRegistro = $usuario->createRow(array(
-					'nome' => (isset($_POST['nome']) ? $_POST['nome'] : null),
-					'email' => (isset($_POST['email']) ? $_POST['email'] : null),
-					'senha' => (isset($_POST['senha']) ? md5($_POST['senha']) : null),
-					'telefone' => (isset($_POST['telefone']) ? $_POST['telefone'] : null),
-					'perfil' => (isset($_POST['perfil']) ? $_POST['perfil'] : null)
-				));
-				try {        			
-        			$novoRegistro->save();
+			if ($validado){				
+				try { 	
+
+					if ($_POST['id'] != ""){
+						//tem id é um update
+						$usuario = new Usuario;
+						$updateRegistro = $usuario->getById($_POST['id']);
+						
+						if (isset($_POST['nome'])) {
+							$updateRegistro->set('nome', $_POST['nome']);
+						}
+
+						if (isset($_POST['email'])){
+							$updateRegistro->set('email', $_POST['email']);
+						}
+
+						if (isset($_POST['senha'])){
+							$updateRegistro->set('senha', md5($_POST['senha']));
+						}
+
+						if (isset($_POST['telefone'])){
+							$updateRegistro->set('telefone', $_POST['telefone']);
+						}
+
+						if (isset($_POST['perfil'])){
+							$updateRegistro->set('perfil', $_POST['perfil']);
+						}
+						
+						$updateRegistro->save();
+
+					} else {
+						//nao tem id é um insert
+						$usuario = new Usuario;				
+						$novoRegistro = $usuario->createRow(array(
+							'nome' => (isset($_POST['nome']) ? $_POST['nome'] : null),
+							'email' => (isset($_POST['email']) ? $_POST['email'] : null),
+							'senha' => (isset($_POST['senha']) ? md5($_POST['senha']) : null),
+							'telefone' => (isset($_POST['telefone']) ? $_POST['telefone'] : null),
+							'perfil' => (isset($_POST['perfil']) ? $_POST['perfil'] : null)
+						));       			
+	        			$novoRegistro->save();
+					}	
+
         			$this->mensagem(array(
 						'success' => 'Usuário Salvo com sucesso!!'
 					));				
@@ -121,6 +159,7 @@ class UsuarioController extends ActionController
         			));
         			session_name('form');
 					session_start();
+					$_SESSION['id'] = $_POST['id'];
 					$_SESSION['nome'] = $_POST['nome'];
 					$_SESSION['email'] = $_POST['email'];
 					$_SESSION['telefone'] = $_POST['telefone'];
@@ -131,6 +170,7 @@ class UsuarioController extends ActionController
 				//o value dos campos que foram preenchidos do form, menos senha e repetir senha
 				session_name('form');
 				session_start();
+				$_SESSION['id'] = $_POST['id'];
 				$_SESSION['nome'] = $_POST['nome'];
 				$_SESSION['email'] = $_POST['email'];
 				$_SESSION['telefone'] = $_POST['telefone'];
@@ -154,7 +194,7 @@ class UsuarioController extends ActionController
 		
 		
 		return self::renderHtml(array(
-			
+			'dados' => $dados
 		));
 	}
 
