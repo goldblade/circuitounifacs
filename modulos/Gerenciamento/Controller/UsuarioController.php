@@ -158,6 +158,27 @@ class UsuarioController extends ActionController
 		));
 	}
 
+	public function apagarAction()
+	{
+		$id = (int) $this->getParam('id');
+
+		$usuario = new Usuario;
+		try {
+			$row = $usuario->getById($id);
+			$row->delete();
+			$this->mensagem(array(
+				'success' => 'Usuário Deletado com sucesso!!'
+			));				
+		
+			header("Location: /gerenciamento/usuario", true, 301);
+		} catch (\Exception $e) {
+			$this->mensagem(array(
+				'error' => 'Usuário não encontrado!'
+			));				
+			header("Location: /gerenciamento/usuario", true, 301);
+		}
+	}
+
 
 	public function confirmacaoAction()
 	{			
