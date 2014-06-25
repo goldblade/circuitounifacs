@@ -1,3 +1,15 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.dados').on("click", ".btnapagar", function(event){
+            event.preventDefault();
+            url = $(this).attr('href');            
+            var r = confirm("Tem certeza que deseja remover o registro?");
+            if (r){            	
+            	window.location.href = url;
+            } 
+        });
+	});
+</script>
 <div class="container">
 	
 	<ol class="breadcrumb">
@@ -66,7 +78,7 @@
 				</tr>
 				
 			</thead>
-			<tbody>
+			<tbody class="dados">
 				<?php
 				foreach ($dados as $dado):
 				?>
@@ -78,7 +90,9 @@
 						</td>
 						<td class="text-center">						
 							<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
-							<a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
+							<a href="/gerenciamento/usuario/apagar/id/<?php 
+							echo $dado->toArray()['id'];?>" 
+							class="btn btn-danger btnapagar"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
 						</td>
 					</tr>
 				<?php
