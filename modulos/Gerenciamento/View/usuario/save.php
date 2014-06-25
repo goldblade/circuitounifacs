@@ -48,8 +48,18 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-2">
 			<p>Campos com * são de preenchimento obrigatórios</p>
 		</div>
-		<div class="col-xs-12 col-md-12 col-sm-12">
+		<div class="col-xs-12 col-md-12 col-sm-12">			
 			<form class="form-horizontal" role="form" action="/gerenciamento/usuario/save" method="post">
+			<input type="hidden" name="id" value="<?php
+			if (isset($_SESSION['id'])){
+				echo $_SESSION['id'];
+				unset($_SESSION['id']);
+			} else {
+				if ($dados){
+					echo $dados->toArray()['id'];
+				}
+			}
+			?>">
 			<?php
 			if ($_POST){
 				//se nao iniciada, iniciar a sessao form para recuperar os dados
@@ -67,7 +77,12 @@
 						if (isset($_SESSION['nome'])){
 							echo $_SESSION['nome'];
 							unset($_SESSION['nome']);
-						}?>">
+						} else {
+							if ($dados){
+								echo $dados->toArray()['nome'];
+							}
+						}
+						?>">
 					</div>
 				</div>
 				<div class="form-group">
@@ -78,6 +93,10 @@
 						if (isset($_SESSION['email'])){
 							echo $_SESSION['email'];
 							unset($_SESSION['email']);
+						} else {
+							if ($dados) {
+								echo $dados->toArray()['email'];
+							}
 						}
 						?>">
 					</div>
@@ -105,13 +124,17 @@
   						if (isset($_SESSION['telefone'])){
   							echo $_SESSION['telefone'];
   							unset($_SESSION['telefone']);
+  						} else {
+  							if ($dados){
+  								echo $dados->toArray()['telefone'];
+  							}
   						}
   						?>">
   					</div>
   				</div>
   				<div class="form-group">
     				<label for="matricula" class="col-xs-12 col-sm-3 col-md-2 control-label">Tipo de usuário</label>
-    				<div class="col-xs-12 col-sm-9 col-md-3">
+    				<div class="col-xs-12 col-sm-9 col-md-3">    				
     					<select name="perfil" id="perfil" class="form-control">
     						<?php
     						$perfil = array(
@@ -119,12 +142,29 @@
     							2 => 'Ouvinte',
     							3 => 'Palestrante',
     							4 => 'Coordenador'
-    						);
+    						);    						
+    						foreach ($perfil as $key => $value):
     						?>
-    						<option value="1">Admin</option>
-    						<option value="2">Ouvinte</option>
+    							<option value="<?php echo $key?>" <?php
+    							if (isset($_SESSION['perfil'])){    								
+    								if ($_SESSION['perfil'] == $key){
+    									echo "selected=selected"; 
+    								}
+    								unset($_SESSION['perfil']);
+    							} else {
+    								if ($dados){    									
+    									if ($dados->toArray()['perfil'] == $key){    										
+    										echo "selected=selected";
+    									}
+    								}
+    							}
+    							?>><?php echo $value?></option>
+    						<?php
+    						endforeach;
+    						?>
+    						<!-- <option value="2">Ouvinte</option>
     						<option value="3">Palestrante</option>
-    						<option value="4">Coordenador</option>
+    						<option value="4">Coordenador</option> -->
     					</select>
 	    				<!-- <input type="text" class="form-control" id="matricula" name="matricula" placeholder="Digite sua matrícula"> -->
 	    				
