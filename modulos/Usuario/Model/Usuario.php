@@ -24,6 +24,11 @@ class Usuario extends Entity
 	 */	
 	protected $nome;
 
+	/**
+	 * email
+	 */
+	protected $email;
+
 	public function getNome()
 	{
 		return $this->nome;
@@ -32,5 +37,15 @@ class Usuario extends Entity
 	public function setNome($value)
 	{
 		$this->nome = $value;
+	}
+
+	public function getEmail()
+	{
+		return $this->email;
+	}
+	
+	public function setEmail($value)
+	{
+		$this->email = $value;
 	}
 }

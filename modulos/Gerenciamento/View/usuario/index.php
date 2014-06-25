@@ -7,29 +7,33 @@
 	</ol>
 
 	<?php	
-	if ($this->temMensagem()){
+	if ($this->temMensagem()){		
 	?>
 		<div class="row">
 			<div class="col-md-12">
-				<?php			
-				foreach ($this->getMensagem() as $key => $value):				
+				<?php
+				// var_dump($this->getMensagem()->mensagem);	
+				foreach ($this->getMensagem() as $key => $value):	
+					foreach ($value as $key2 => $value2):						
 				?>			
 					<div class="alert alert-<?php
-					if ($key == 'error') {
+					if ($key2 == 'error') {
 						echo 'danger';
 					}
-					if ($key == 'warning') {
+					if ($key2 == 'warning') {
 						echo 'warning';
 					}
-					if ($key == 'info'){
+					if ($key2 == 'info'){
 						echo 'info';
 					}
-					if ($key == 'success'){
+					if ($key2 == 'success'){
 						echo 'success';
 					}
-					?>"><?php echo $value;?></div>
+					?>"><?php echo $value2;?></div>
 				<?php
+					endforeach;
 				endforeach;
+				// unset($_SESSION['mensagem']);
 				?>
 			</div>
 		</div>
@@ -63,13 +67,23 @@
 				
 			</thead>
 			<tbody>
-				<tr>
-					<td>Admin</td>
-					<td class="text-center">						
-						<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
-						<a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
-					</td>
-				</tr>
+				<?php
+				foreach ($dados as $dado):
+				?>
+					<tr>
+						<td>
+							<?php
+							echo $dado->toArray()['nome'];
+							?>
+						</td>
+						<td class="text-center">						
+							<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
+							<a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
+						</td>
+					</tr>
+				<?php
+				endforeach;
+				?>
 			</tbody>
 		</table>
 	</div>
