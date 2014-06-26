@@ -3,6 +3,7 @@ namespace modulos\Gerenciamento\Controller;
 
 use Unifacs\Core\Controller\ActionController;
 use modulos\Usuario\Model\Usuario;
+use Unifacs\Core\Db\Conexao;
 
 class UsuarioController extends ActionController
 {
@@ -217,6 +218,21 @@ class UsuarioController extends ActionController
 			));				
 			header("Location: /gerenciamento/usuario", true, 301);
 		}
+	}
+
+	public function buscaAction()
+	{
+		//pega a query passada pelo post
+		$q = $_POST['q'];
+
+		$con = new Conexao;
+		$dados = $con->query("SELECT * FROM usuario WHERE nome LIKE ? OR email LIKE ? ", array( '%'.$q.'%', '%'.$q.'%' ));
+		$dados = $con->fetchAll();
+		
+		$this->setTerminal(true);
+		return self::renderHtml(array(
+			'dados' => $dados
+		));
 	}
 
 
