@@ -75,16 +75,17 @@
 	?>
 
 	<div class="page-header">
-		<h1>Eventos <small>do circuito</small></h1>
+		<h1>Sub-Eventos <small>do <?php echo $evento['nome']?></small></h1>
 	</div>	
 	<div class="row">
 		<div class="col-xs-12 col-md-9 col-sm-6">			
-			<a href="/gerenciamento/eventos/save" class="btn btn-primary">
+			<a href="/gerenciamento/subeventos/save/evento/<?php echo $evento['id']?>" class="btn btn-primary">
 				<strong><i class="glyphicon glyphicon-plus"></i> Novo Evento</strong>
 			</a>
 		</div>
 		<div class="col-xs-12 col-md-3 col-sm-6">
-			<form id="busca" action="/gerenciamento/eventos/busca" role="form" class="form-inline" method="post">
+			<form id="busca" action="/gerenciamento/subeventos/busca/evento/<?php echo $evento['id']?>" 
+			role="form" class="form-inline" method="post">
 				<input type="text" class="form-control" placeholder="Pesquisar" name="q">
 			</form>		
 		</div>
@@ -94,10 +95,14 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th class="col-sm-5">NOME</th>
-					<th class="col-sm-2">DATA</th>
-					<th class="col-sm-1">STATUS</th>
-					<th class="col-sm-4">AÇÕES</th>
+					<th class="col-sm-3">NOME</th>					
+					<th class="col-sm-5">
+						DETALHES
+					</th>
+					<th class="col-sm-1">
+						DURAÇÃO
+					</th>
+					<th class="col-sm-3">AÇÕES</th>
 				</tr>
 				
 			</thead>
@@ -110,45 +115,24 @@
 							<?php
 							echo $dado->toArray()['nome'];
 							?>
-						</td>
+						</td>	
 						<td>
 							<?php
-							$dataInicio = new \DateTime($dado->toArray()['data_inicio']);
-							$dataInicio = $dataInicio->format('d/m/Y');
-							echo $dataInicio; 
-							if ($dado->toArray()['data_final']){
-								$dataFinal = new \DateTime($dado->toArray()['data_final']);
-								$dataFinal = $dataFinal->format('d/m/Y');
-								echo " à " . $dataFinal;
-							}
-							?>							
-						</td>
-						<td>
-							<?php
-							switch ($dado->toArray()['status']) {
-								case 'ativo':
-									echo '<span class="label label-primary">Ativo</span>';
-									break;
-								case 'finalizado':
-									echo '<span class="label label-success">Finalizado</span>';
-									break;
-								case 'cancelado':
-									echo '<span class="label label-danger">Cancelado</span>';
-									break;								
-							}							
+							echo $dado->toArray()['detalhes'];
 							?>
 						</td>
-						<td class="text-center">
-							<a href="/gerenciamento/subeventos/index/evento/<?php echo $dado->toArray()['id'];?>" 
-							class="btn btn-primary">
-								<i class="glyphicon glyphicon-flag"></i> Sub Eventos
-							</a>						
-							<a href="/gerenciamento/eventos/save/id/<?php
+						<td>
+							<?php
+							echo $dado->toArray()['duracao'];
+							?>
+						</td>					
+						<td class="text-center">							
+							<a href="/gerenciamento/subeventos/save/id/<?php
 							echo $dado->toArray()['id'];
-							?>" 
+							?>/evento/<?php echo $evento['id']?>" 
 							class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
-							<a href="/gerenciamento/eventos/apagar/id/<?php 
-							echo $dado->toArray()['id'];?>" 
+							<a href="/gerenciamento/subeventos/apagar/id/<?php 
+							echo $dado->toArray()['id'];?>/evento/<?php echo $evento['id']?>" 
 							class="btn btn-danger btnapagar"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
 						</td>
 					</tr>
