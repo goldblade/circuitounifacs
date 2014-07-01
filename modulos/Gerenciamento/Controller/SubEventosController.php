@@ -150,6 +150,26 @@ class SubEventosController extends ActionController
 		));
 	}
 
+	public function buscaAction()
+	{
+		//pega a query passada pelo post
+		$q = $_POST['q'];
+		$eventoId = (int) $this->getParam('evento');		
+		// $eventos = new EdicaoCircuito;
+		// $evento = $eventos->getById($eventoId);		
+		$con = new Conexao;
+		$dados = $con->query("SELECT * FROM evento WHERE nome LIKE ? AND edicaoCircuito_id = ?", 
+			array( '%'.$q.'%', $eventoId ));		
+		$dados = $con->fetchAll();
+
+		// var_dump($dados);
+		
+		$this->setTerminal(true);
+		return self::renderHtml(array(
+			'dados' => $dados			
+		));
+	}
+
 	public function apagarAction()
 	{
 		$id = (int) $this->getParam('id');
