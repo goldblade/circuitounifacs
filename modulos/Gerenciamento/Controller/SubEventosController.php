@@ -79,6 +79,7 @@ class SubEventosController extends ActionController
 				$this->mensagem(array(
 					'error' => 'Por favor entre com a duração do evento'
 				));
+				$validado = false;
 			}
 
 			if ($validado){
@@ -189,6 +190,15 @@ class SubEventosController extends ActionController
 			));				
 			header("Location: /gerenciamento/subeventos/index/evento/" . $eventoId, true, 301);
 		}
+	}
+
+	public function alocarAction()
+	{
+		$id = (int) $this->getParam('id');
+		$eventoId = (int) $this->getParam('evento');
+		return self::renderHtml(array(
+
+		));
 	}
 
 }

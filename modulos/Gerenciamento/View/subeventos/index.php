@@ -126,7 +126,12 @@
 							echo $dado->toArray()['duracao'];
 							?>
 						</td>					
-						<td class="text-center">							
+						<td class="text-center">
+							<a href="/gerenciamento/subeventos/alocar/id/<?php 
+							echo $dado->toArray()['id'];?>/evento/<?php echo $evento['id'];?>" 
+							class="btn btn-primary">
+								<i class="glyphicon glyphicon-home"></i> Local
+							</a>							
 							<a href="/gerenciamento/subeventos/save/id/<?php
 							echo $dado->toArray()['id'];
 							?>/evento/<?php echo $evento['id']?>" 
