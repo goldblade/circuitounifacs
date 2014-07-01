@@ -194,6 +194,13 @@ class SubEventosController extends ActionController
 
 	public function alocarAction()
 	{
+		/**
+		 * Verificando se existem salas cadastradas no sistema, se salas nao tiverem cadastradas redirecionar 
+		 * para tela de cadastro de predios.
+		 */
+		$salas = new Salas;
+		$salas = $salas->getAll();
+
 		$id = (int) $this->getParam('id');
 		$eventoId = (int) $this->getParam('evento');
 		return self::renderHtml(array(
