@@ -96,11 +96,11 @@
 			<thead>
 				<tr>
 					<th class="col-sm-3">NOME</th>					
-					<th class="col-sm-5">
+					<th class="col-sm-4">
 						DETALHES
 					</th>
-					<th class="col-sm-1">
-						DURAÇÃO
+					<th class="col-sm-2 text-center">
+						CARGA HORÁRIA
 					</th>
 					<th class="col-sm-3">AÇÕES</th>
 				</tr>
@@ -121,9 +121,9 @@
 							echo $dado->toArray()['detalhes'];
 							?>
 						</td>
-						<td>
+						<td class="text-center">
 							<?php
-							echo $dado->toArray()['duracao'];
+							echo $dado->toArray()['cargahoraria'];
 							?>
 						</td>					
 						<td class="text-center">
