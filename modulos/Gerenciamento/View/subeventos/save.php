@@ -87,18 +87,18 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="duracao" class="col-xs-12 col-sm-3 col-md-2 control-label">
-						Duração <small>*</small>
+					<label for="cargahoraria" class="col-xs-12 col-sm-3 col-md-2 control-label">
+						Carga Horária em horas <small>*</small>
 					</label>
-					<div class="col-xs-12 col-sm-9 col-md-2">
-						<input type="text" name="duracao" class="form-control" placeholder="Duração do evento" 
+					<div class="col-xs-12 col-sm-9 col-md-1">
+						<input type="text" name="cargahoraria" class="form-control"  
 						value="<?php
-						if (isset($_SESSION['duracao'])){
-							echo $_SESSION['duracao'];
-							unset($_SESSION['duracao']);
+						if (isset($_SESSION['cargahoraria'])){
+							echo $_SESSION['cargahoraria'];
+							unset($_SESSION['cargahoraria']);
 						} else {
 							if ($dados){
-								echo $dados->toArray()['duracao'];
+								echo $dados->toArray()['cargahoraria'];
 							}
 						}
 						?>">

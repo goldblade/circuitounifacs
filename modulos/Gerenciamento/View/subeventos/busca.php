@@ -15,7 +15,7 @@ foreach ($dados['dados'] as $dado):
 		</td>
 		<td>
 			<?php
-			echo $dado['duracao'];
+			echo $dado['cargahoraria'];
 			?>
 		</td>					
 		<td class="text-center">							

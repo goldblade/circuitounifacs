@@ -75,9 +75,9 @@ class SubEventosController extends ActionController
 				$validado = false;
 			}
 
-			if ($_POST['duracao'] == ""){
+			if ($_POST['cargahoraria'] == ""){
 				$this->mensagem(array(
-					'error' => 'Por favor entre com a duração do evento'
+					'error' => 'Por favor entre com a Carga horária do evento'
 				));
 				$validado = false;
 			}
@@ -92,8 +92,8 @@ class SubEventosController extends ActionController
 						if (isset($_POST['nome'])){
 							$updateRegistro->set('nome', $_POST['nome']);
 						}						
-						if (isset($_POST['duracao'])){
-							$updateRegistro->set('duracao', $_POST['duracao']);
+						if (isset($_POST['cargahoraria'])){
+							$updateRegistro->set('cargahoraria', $_POST['cargahoraria']);
 						}
 						if (isset($_POST['tipoEvento'])){
 							$updateRegistro->set('tipoEvento_id', $_POST['tipoEvento']);
@@ -107,7 +107,7 @@ class SubEventosController extends ActionController
 						$evento = new Evento;
 						$novoRegistro = $evento->createRow(array(
 							'nome' => (isset($_POST['nome']) ? $_POST['nome'] : null),
-							'duracao' => (isset($_POST['duracao']) ? $_POST['duracao'] : null),
+							'cargahoraria' => (isset($_POST['cargahoraria']) ? $_POST['cargahoraria'] : null),
 							'tipoEvento_id' => (isset($_POST['tipoEvento']) ? $_POST['tipoEvento'] : null),
 							'detalhes' => (isset($_POST['detalhes']) ? $_POST['detalhes'] : null),
 							'edicaoCircuito_id' => $eventoId
@@ -127,7 +127,7 @@ class SubEventosController extends ActionController
 					session_start();
 					$_SESSION['id'] = $_POST['id'];
 					$_SESSION['nome'] = $_POST['nome'];
-					$_SESSION['duracao'] = $_POST['duracao'];
+					$_SESSION['cargahoraria'] = $_POST['cargahoraria'];
 					$_SESSION['tipoEvento'] = $_POST['tipoEvento'];
 					$_SESSION['detalhes'] = $_POST['detalhes'];
 				}
@@ -138,7 +138,7 @@ class SubEventosController extends ActionController
 				session_start();
 				$_SESSION['id'] = $_POST['id'];
 				$_SESSION['nome'] = $_POST['nome'];
-				$_SESSION['duracao'] = $_POST['duracao'];
+				$_SESSION['cargahoraria'] = $_POST['cargahoraria'];
 				$_SESSION['tipoEvento'] = $_POST['tipoEvento'];
 				$_SESSION['detalhes'] = $_POST['detalhes'];
 			}
@@ -198,9 +198,14 @@ class SubEventosController extends ActionController
 		 * Verificando se existem salas cadastradas no sistema, se salas nao tiverem cadastradas redirecionar 
 		 * para tela de cadastro de predios.
 		 */
-		$salas = new Salas;
-		$salas = $salas->getAll();
-
+		// $salas = new Salas;
+		// $salas = $salas->getAll();
+		// if (count($salas) <= 0){
+		// 	$this->mensagem(array(
+		// 		'error' => 'Não existem salas cadastradas no sistema, por favor cadastre uma'
+		// 	));
+		// 	header("Location: /gerenciamento/dddddd", true, 301);
+		// }
 		$id = (int) $this->getParam('id');
 		$eventoId = (int) $this->getParam('evento');
 		return self::renderHtml(array(
