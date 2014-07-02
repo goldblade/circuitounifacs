@@ -61,7 +61,7 @@ CREATE  TABLE IF NOT EXISTS `circuito`.`evento` (
   `edicaoCircuito_id` INT NOT NULL ,
   `nome` VARCHAR(45) NOT NULL ,
   `tipoEvento_id` INT NOT NULL ,
-  `cargahoraria` TIME NOT NULL ,
+  `cargahoraria` INT NOT NULL ,
   `detalhes` TEXT NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_atividade_evento1` (`edicaoCircuito_id` ASC) ,
