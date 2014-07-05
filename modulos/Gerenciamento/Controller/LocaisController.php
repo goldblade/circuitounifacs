@@ -68,7 +68,7 @@ class LocaisController extends ActionController
 	{
 		$q = $_POST['q'];
 		$con = new Conexao;
-		$dados = $con->query("SELECT * FROM campi WHERE nome LIKE ? OR endereco LIKE ? ", array( '%'.$q.'%', '%'.$q.'%' ));
+		$dados = $con->query("SELECT * FROM Campi WHERE nome LIKE ? OR endereco LIKE ? ", array( '%'.$q.'%', '%'.$q.'%' ));
 		$dados = $con->fetchAll();
 		$this->setTerminal(true);
 		return self::renderHtml(array(

@@ -36,7 +36,7 @@
 							<?php
 							foreach($dados[0] as $dado){
 								?>
-								<option <?php echo isset($dados[2]) && $dados[2]->toArray()['tipoSala_id'] ==  $dado->toArray()['id'] ? 'selected' : ''; ?> value="<?php echo $dado->toArray()['id']; ?>"><?php echo $dado->toArray()['nome']; ?></option>
+								<option value="<?php echo $dado->toArray()['id']; ?>"><?php echo $dado->toArray()['nome']; ?></option>
 								<?php
 							}
 							?>

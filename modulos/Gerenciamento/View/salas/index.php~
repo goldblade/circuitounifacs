@@ -11,10 +11,9 @@
         $( "#busca" ).submit(function( event ) {            
             event.preventDefault();
             var query = $("input[name=q]").val();
-            var query_campi_id = $("input[name=campi_id]").val();
             $.ajax({
                 type : "POST",
-                data : { q:query, c: query_campi_id },
+                data : { q:query },
                 url : $(this).attr('action'),
                 success : function(result){
                     $(".dados").html(result);

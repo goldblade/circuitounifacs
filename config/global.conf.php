@@ -4,6 +4,6 @@ return array(
 		'host' => 'localhost',
 		'usuario' => 'root',
 		'senha' => '123456',
-		'database' => 'circuitounifacs'
+		'database' => 'circuito'
 	),
 );

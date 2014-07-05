@@ -16,7 +16,7 @@ class SalasController extends ActionController
 		$campi = new Campi();
 		$dados[] = $campi->getById($campiId);
 		$con = new Conexao;
-		$salas = $con->query("SELECT * FROM sala WHERE campi_id = ? ", array($campiId));
+		$salas = $con->query("SELECT s.*, t.nome FROM	sala AS s INNER JOIN tipoSala AS t ON s.tipoSala_id = t.id WHERE s.campi_id = ?", array($campiId));
 		$salas = $con->fetchAll();
 		//$this->setTerminal(true);
 		$dados[] = $salas;
@@ -46,26 +46,53 @@ class SalasController extends ActionController
 		}
 		if($_POST){
 			if($_POST['id'] != ""){
-				$campi = new Campi();
-				$updateCampi = $campi->getById($_POST['id']);
-				$updateCampi->set('nome', $_POST['nome']);
-				$updateCampi->set('endereco', $_POST['endereco']);
-				$updateCampi->set('telefone', $_POST['telefone']);
-				$updateCampi->save();
-				header('location: /gerenciamento/locais/index');
+				$sala = new Sala();
+				$updateSala = $sala->getById($_POST['id']);
+				$updateSala->set('descricao', $_POST['descricao']);
+				$updateSala->set('capacidade_maxima', $_POST['capacidade_maxima']);
+				$updateSala->set('tipoSala_id', $_POST['tipoSala_id']);
+				$updateSala->set('campi_id', $_POST['campi_id']);
+				$updateSala->save();
+				header('location: /gerenciamento/salas/index/campi/'.$_POST['campi_id']);
 			} else {
-				$campi = new Campi();
-				$newCampi = $campi->createRow(
+				
+				echo '<pre>';
+				var_dump($_POST);
+				echo '</pre>'; //exit;
+				$sala = new Sala();
+				$newSala = $sala->createRow(
 					array(
-						'nome' => $_POST['nome'],
-						'endereco' => $_POST['endereco'],
-						'telefone' => $_POST['telefone']
+						'descricao' => $_POST['descricao'],
+						'capacidade_maxima' => $_POST['capacidade_maxima'],
+						'tipoSala_id' => $_POST['tipoSala_id'],
+						'campi_id' => $_POST['campi_id']
 						)
 					);
-				$newCampi->save();
-				header('location: /gerenciamento/locais/index');
+				$newSala->save();
+				header('location: /gerenciamento/salas/index/campi/'.$_POST['campi_id']);
 			}
 		}
+		return self::renderHtml(array(
+			'dados' => $dados
+		));
+	}
+	public function apagarAction()
+	{
+		$campi_id = (int) $this->getParam('campi');
+		$id = (int) $this->getParam('id');
+		$sala = new Sala();
+		$salaApagar = $sala->getById($id);
+		$salaApagar->delete();
+		header('location: /gerenciamento/salas/index/campi/'.$campi_id);
+	}
+	public function buscaAction()
+	{
+		$q = $_POST['q'];
+		$c = $_POST['c'];
+		$con = new Conexao;
+		$dados = $con->query("SELECT s.*, t.nome FROM	sala AS s INNER JOIN tipoSala AS t ON s.tipoSala_id = t.id WHERE (s.descricao LIKE ? OR t.nome LIKE ?) AND s.campi_id = ? ", array( '%'.$q.'%', '%'.$q.'%', $c ));
+		$dados = $con->fetchAll();
+		$this->setTerminal(true);
 		return self::renderHtml(array(
 			'dados' => $dados
 		));

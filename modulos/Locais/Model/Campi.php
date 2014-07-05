@@ -11,7 +11,7 @@ class Campi extends Entity
 	 */
 	//private $name = 'campi';
 
-	protected $tableName = 'campi';
+	protected $tableName = 'Campi';
 
 	/**
 	 * Chave primaria
