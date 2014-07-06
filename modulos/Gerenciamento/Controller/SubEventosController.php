@@ -5,6 +5,10 @@ use Unifacs\Core\Controller\ActionController;
 use modulos\Eventos\Model\Evento;
 use modulos\Eventos\Model\EdicaoCircuito;
 use modulos\Eventos\Model\TipoEvento;
+use modulos\Eventos\Model\EventoPorSala;
+use modulos\Locais\Model\Sala;
+use modulos\Locais\Model\Campi;
+
 use Unifacs\Core\Db\Conexao;
 
 class SubEventosController extends ActionController
@@ -197,20 +201,58 @@ class SubEventosController extends ActionController
 		/**
 		 * Verificando se existem salas cadastradas no sistema, se salas nao tiverem cadastradas redirecionar 
 		 * para tela de cadastro de predios.
-		 */
-		// $salas = new Salas;
-		// $salas = $salas->getAll();
-		// if (count($salas) <= 0){
-		// 	$this->mensagem(array(
-		// 		'error' => 'Não existem salas cadastradas no sistema, por favor cadastre uma'
-		// 	));
-		// 	header("Location: /gerenciamento/dddddd", true, 301);
-		// }
-		$id = (int) $this->getParam('id');
-		$eventoId = (int) $this->getParam('evento');
-		return self::renderHtml(array(
+		 */		
+		$salas = new Sala;
+		$salas = $salas->getAll();		
+		if (count($salas) <= 0){
+			$this->mensagem(array(
+				'error' => 'Não existem salas cadastradas no sistema, por favor cadastre uma'
+			));			
+			header("Location: /gerenciamento/locais", true, 301);
+		} else {
+			$id = (int) $this->getParam('id');//id do subevento
+			$eventoId = (int) $this->getParam('evento');//id do evento(EdicaoCircuito)
+			$dados = null;			
+			/*
+			 * Verificando se o Evento já tem uma sala alocada
+			 */			
+			$con = new Conexao;
+			$eventoPorSala = $con->query("SELECT * FROM eventoPorSala WHERE evento_id = ?", 
+				array( $id ));			
+			$eventoPorSala = $con->fetchAll();			
 
-		));
+			$campi = new Campi;
+			$campi = $campi->getAll();
+
+			return self::renderHtml(array(
+				'dados' => $eventoPorSala,
+				'campi' => $campi,
+				'salas' => $salas
+			));
+		}				
+	}
+
+	public function salasAction()
+	{
+		$id = $this->getParam('campi');
+		// $eventoId = (int) $this->getParam('evento');			
+		$con = new Conexao;
+		$dados = $con->query("SELECT id, descricao FROM sala WHERE campi_id = ?", 
+			array( $id  ));		
+		$dados = $con->fetchAll();
+
+		$salas = array();
+		foreach ($dados as $key => $value) {
+			$salas[] = array("id" => $value['id'], "descricao" => $value['descricao']);
+		}
+
+		$salas = json_encode($salas);
+		echo $salas;
+
+		//echo json_encode($arr);
+		// var_dump($dados);
+		
+		// $this->setTerminal(true);
 	}
 
 }
