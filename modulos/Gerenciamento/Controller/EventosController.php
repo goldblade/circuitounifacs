@@ -26,7 +26,6 @@ class EventosController extends ActionController
 			$edicaocircuito = new EdicaoCircuito;
 			$dados = $edicaocircuito->getById($id);			
 		}
-
 		$mensagem = array();
 		if ($_POST){
 			$validado = true;
@@ -127,7 +126,7 @@ class EventosController extends ActionController
 		}
 		
 		return self::renderHtml(array(
-			'dados' => $dados
+			'dados' => $dados			
 		));
 	}
 

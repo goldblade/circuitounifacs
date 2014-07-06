@@ -9,8 +9,7 @@
             } 
         });
         $( "#busca" ).submit(function( event ) {            
-            event.preventDefault();
-            // var query = $(this).serialize(); 
+            event.preventDefault();            
             var query = $("input[name=q]").val();
             $.ajax({
                 type : "POST",
@@ -95,10 +94,10 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th class="col-sm-6">NOME</th>
+					<th class="col-sm-5">NOME</th>
 					<th class="col-sm-2">DATA</th>
 					<th class="col-sm-1">STATUS</th>
-					<th class="col-sm-3">AÇÕES</th>
+					<th class="col-sm-4">AÇÕES</th>
 				</tr>
 				
 			</thead>
@@ -139,7 +138,11 @@
 							}							
 							?>
 						</td>
-						<td class="text-center">						
+						<td class="text-center">
+							<a href="/gerenciamento/subeventos/index/evento/<?php echo $dado->toArray()['id'];?>" 
+							class="btn btn-primary">
+								<i class="glyphicon glyphicon-flag"></i> Sub Eventos
+							</a>						
 							<a href="/gerenciamento/eventos/save/id/<?php
 							echo $dado->toArray()['id'];
 							?>" 
