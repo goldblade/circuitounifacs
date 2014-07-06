@@ -12,7 +12,7 @@
 			<p>Campos com * são de preenchimento obrigatórios</p>
 		</div>
 		<div class="col-xs-12 col-md-12 col-sm-12">
-			<form class="form-horizontal" role="form" action="/usuario/cadastro/confirmacao" method="post">
+			<form class="form-horizontal" role="form" action="/usuario/cadastro/save" method="post">
 				<div class="form-group">
 					<label for="nome" class="col-xs-12 col-sm-3 col-md-2 control-label">Nome <small>*</small></label>
 					<div class="col-xs-12 col-sm-9 col-md-4">						
