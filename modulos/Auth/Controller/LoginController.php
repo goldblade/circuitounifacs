@@ -33,4 +33,9 @@ class LoginController extends ActionController
 			header('location: /auth/login');
 		}
 	}
+
+	public function sairAction(){
+		session_destroy();
+		header('location: /');
+	}
 }

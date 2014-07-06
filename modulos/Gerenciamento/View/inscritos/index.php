@@ -1,7 +1,17 @@
 <div class="container">
 	<ol class="breadcrumb">
   		<li><a href="/">Ínicio</a></li>
-  		<li><a href="/gerenciamento/index/index/usuario/1">Gerenciamento</a></li>
+  		<?php
+  		if($_SESSION['perfil'] == 'admin'){
+  			?>
+			<li><a href="/gerenciamento/index/index">Gerenciamento</a></li>
+  			<?php
+  		} else {
+  			?>
+			<li>Gerenciamento</li>
+  			<?php
+  		}
+  		?>
   		<li class="active">Inscritos</li>
 	</ol>
 	<div class="page-header">
