@@ -10,10 +10,13 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<link rel="stylesheet" href="/assets/css/style.css">
 	<link rel="stylesheet" href="/assets/componentes/jquery-ui-1.10.4/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/assets/bower_components/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
 	<script src="/assets/js/jquery-2.1.0.min.js"></script>
 	<script src="/assets/js/bootstrap.min.js"></script>
 	<script src="/assets/componentes/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
+	<script src="/assets/bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
 	<script src="/assets/js/calendar.js"></script>
+
 </head>
 <body>	
 	<header>
