@@ -4,8 +4,8 @@
 	<ol class="breadcrumb">
   		<li><a href="/">Ínicio</a></li>
   		<li><a href="/gerenciamento/index/index">Gerenciamento</a></li>  		
-  		<li><a href="/gerenciamento/index/index">Eventos</a></li> 
-  		<li><a href="/gerenciamento/index/index">Sub Eventos</a></li> 
+  		<li><a href="/gerenciamento/eventos/index">Eventos</a></li> 
+  		<li><a href="/gerenciamento/subeventos/index/evento/<?php echo $idCircuito;?>">Sub Eventos</a></li> 
   		<li class="active">Alocamento</li>
 	</ol>
 	<?php	
@@ -45,10 +45,11 @@
 
 	<div class="page-header">
 		<h1>Alocamento </h1>
-	</div>		
-	<?php	
+	</div>
+	<input type="hidden" name="eventoId" value="<?php echo $idevento?>">		
+	<?php		
 	//se dados maior que 0 é que nao tem sala associada ao evento
-	if (count($dados) == 0):
+	if ( (count($dados) == 0) || (count($dados) > 0 && $idalocamento > 0) ):
 		/**
 		 * @todo apresentar os campis, disponiveis para escolha
 		 * @todo escolher a sala de acordo com o campi
@@ -200,6 +201,32 @@
 			</div>
 		</div>
 	<?php
+	else:		
+	?>	
+		<div class="row edit">
+			<p><b>Local:</b> <?php echo $dados[0]['campiNome']?></p>
+			<p><b>Sala:</b> <?php echo $dados[0]['descricaoSala']?></p>
+			<p><b>Data:</b> <?php 
+			$dataInicio = new \DateTime($dados[0]['data_inicio']);
+			echo $dataInicio->format('d/m/Y');
+			?></p>
+			<p><b>Hora de Início:</b> <?php echo $dataInicio->format('H:i:s')?></p>
+			<p><b>Hora de termíno:</b> <?php
+			$dataFinal = new \DateTime($dados[0]['data_fim']);
+			echo $dataFinal->format('H:i:s');
+			?></p>
+			<p>
+				<a href="/gerenciamento/subeventos/index/evento/<?php echo $idCircuito;?>" class="btn btn-primary">
+					<i class="glyphicon glyphicon-flag"></i> Voltar para Sub Eventos
+				</a>
+				<a href="/gerenciamento/subeventos/alocar/id/<?php echo $dados[0]['evento_id'];?>/evento/<?php 
+				echo $dados[0]['idcircuito'];?>/idalocamento/<?php echo $dados[0]['id']?>" 
+				class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar?</a>
+				<a href="/gerenciamento/subeventos/apagaralocamento/id/<?php echo $dados[0]['id']?>/evento/<?php echo $idCircuito;?>" 
+				class="btn btn-danger btnapagar"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
+			</p>
+		</div><!-- fim row -->
+<?php
 	endif;
 	?>
 </div>
@@ -211,35 +238,69 @@ $(document).ready(function() {
         event.preventDefault();
 
         if (step == 2){
-        	horario_inicio = $("input[name='hora_inicio']").val();
-        	horario_final = $("input[name='hora_final']").val();
-        	if (horario_inicio > horario_final){
+        	data_inicio = $("input[name='data_inicio']").val();
+        	data_inicio = data_inicio.split("/");
+    		data_inicio = data_inicio[2] + "/" + data_inicio[1] + "/" + data_inicio[0];
+
+    		horario_inicio = $("input[name='hora_inicio']").val();
+    		horario_final =  $("input[name='hora_final']").val();
+        	data_horario_inicio = data_inicio + " " + $("input[name='hora_inicio']").val();
+        	data_horario_final = data_inicio + " " + $("input[name='hora_final']").val();
+        	// console.log(horario_inicio + " - " + horario_final);
+        	   			
+        	data_horario_inicio = new Date(data_horario_inicio).getTime();
+        	data_horario_final = new Date(data_horario_final).getTime();
+        	// console.log("hora_inicio: " + horario_inicio + " hora_final: " + horario_final);
+        	if (data_horario_inicio > data_horario_final){
         		alert('Hora de início nao pode ser maior que hora final');
-        	} else if (horario_inicio == horario_final) {
+        	} else if (data_horario_inicio == data_horario_final) {
         		alert('Hora de Início não pode ser igual a hora final');
+        	} else if (data_inicio == ""){
+        		alert("É preciso escolher uma data");
         	} else {
-        		alert('HORA INICIO' + horario_inicio + " HORA FINAL "+ horario_final);
+        		// alert('HORA INICIO ' + horario_inicio + " HORA FINAL " + horario_final);
+        		// alert("ID DA SALA: " + sala);
+        		// alert("DATA ESCOLHIDA: " + data_inicio);
+        		data_inicio = $("input[name='data_inicio']").val();
+	        	data_inicio = data_inicio.split("/");
+	    		data_inicio = data_inicio[2] + "-" + data_inicio[1] + "-" + data_inicio[0];
         		$.ajax({
-	                type : "POST",
-	                // data : { id:campi },
+	                type : "GET",	                
 	                dataType : "json",
-	                url : '/gerenciamento/subeventos/salas/campi/' + campi,
+	                <?php
+	                if ($idalocamento > 0){
+	                
+	                	echo "url : '/gerenciamento/subeventos/checkhora/data/' + data_inicio 
+	                + '/horainicio/' + horario_inicio + '/horafinal/' + horario_final + '/sala/' + sala 
+	                + '/idevento/'+ $(\"input[name='eventoId']\").val() + '/idalocamento/{$idalocamento}',";
+	                
+	                } else {
+	                
+	                	echo "url : '/gerenciamento/subeventos/checkhora/data/' + data_inicio 
+	                + '/horainicio/' + horario_inicio + '/horafinal/' + horario_final + '/sala/' + sala 
+	                + '/idevento/'+ $(\"input[name='eventoId']\").val(),";
+	                
+	                }
+	                ?>	                
 	                success : function(result){
 	                	// alert(result.length);
-	                	var html = "<option value=''> Selecione uma sala </option>";
-	                   	for(var k in result) {
-						   // console.log(k, result[k]);
-						   // console.log(result[k].descricao);
-						   html += "<option value='" + result[k].id + "'>" + result[k].descricao +  "</option>";
-						}
-						$(".sala").html(html);
+	                	if (result.qtd > 0){
+	                		alert("Horario já reservado, escolha outro");
+	                	} else {
+	                		$(".progress-bar" ).attr( "style", "width: 100%" );
+        					$(".progress-bar").html("100% Completo");
+	                		alert("Evento agendado!");
+	                		window.location = "/gerenciamento/subeventos/index/evento/" 
+	                		+ <?php echo $idCircuito;?>;
+	                	}
+	                	// alert(result.qtd);
 	                },
 	                // beforeSend : function(){
 	                    
 	                // }, 
-	                // complete : function(msg){                    
+	                complete : function(msg){                    
 	                    
-	                // } 
+	                } 
 	            })
         	}
         	
@@ -251,8 +312,8 @@ $(document).ready(function() {
         		alert("Por favor escolha uma sala, para continuar");
         	} else {
         		$("#hora").show();
-        		$(".progress-bar" ).attr( "style", "width: 50%" );
-        		$(".progress-bar").html("50% Completo");
+        		$(".progress-bar" ).attr( "style", "width: 66%" );
+        		$(".progress-bar").html("66% Completo");
         		step++;
         	}        	        	
         }        
@@ -266,8 +327,8 @@ $(document).ready(function() {
         		$("#campi").hide();        		
         		$( ".previous" ).removeClass( "disabled" );
         		//$(".progress-bar")
-        		$(".progress-bar" ).attr( "style", "width: 25%" );
-        		$(".progress-bar").html("25% Completo");
+        		$(".progress-bar" ).attr( "style", "width: 33%" );
+        		$(".progress-bar").html("33% Completo");
         		step++;
         		$("#salas").show();
         		//campi foi selecionado, esconder div#campi, incrementar o step
@@ -296,7 +357,7 @@ $(document).ready(function() {
 	            })       		
         	}        	
         } 
-        console.log("STEP: " + step);
+        // console.log("STEP: " + step);
 
     });
 
@@ -314,11 +375,11 @@ $(document).ready(function() {
 
     	if (step == 2){
     		$("#hora").hide();
-    		$(".progress-bar" ).attr( "style", "width: 25%" );
-    		$(".progress-bar").html("25% Completo");
+    		$(".progress-bar" ).attr( "style", "width: 33%" );
+    		$(".progress-bar").html("33% Completo");
     		step--;
     	}
-    	console.log("STEP: " + step);
+    	// console.log("STEP: " + step);
     });
 
  	$('#timepicker1').timepicker({
@@ -349,6 +410,16 @@ $(document).ready(function() {
 	    	changeYear: true
 		});
   	});
+
+
+  	$('.edit').on("click", ".btnapagar", function(event){
+            event.preventDefault();
+            url = $(this).attr('href');            
+            var r = confirm("Tem certeza que deseja remover o registro?");
+            if (r){            	
+            	window.location.href = url;
+            } 
+        });
 
 });
 </script>	
