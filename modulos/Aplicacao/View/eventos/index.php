@@ -1,6 +1,6 @@
 <div class="container">
 	<ol class="breadcrumb">
-  		<li><a href="/aplicacao/index/index/usuario/2">Ínicio</a></li>  		
+  		<li><a href="/aplicacao/index/index">Ínicio</a></li>  		
   		<li class="active">Eventos</li>
 	</ol>
 	<div class="page-header">
@@ -9,7 +9,7 @@
 	<div class="row">
 		<div id="calendar" class="col-md-5"></div>
 		<div id="programacao" class="col-md-7 table-responsive">
-			<form method="get" action="/aplicacao/eventos/save/usuario/2">
+			<form method="get" action="/aplicacao/eventos/save">
 				<table class="table table-striped">
 					<thead>
 						<tr>

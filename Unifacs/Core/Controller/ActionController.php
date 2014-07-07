@@ -1,6 +1,6 @@
 <?php
 namespace Unifacs\Core\Controller;
-
+session_start();
 class ActionController 
 {
 	private $layout = "layout.php";

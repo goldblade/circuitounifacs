@@ -90,9 +90,7 @@ class SalasController extends ActionController
 		$q = $_POST['q'];
 		$c = $_POST['c'];
 		$con = new Conexao;
-		 $dados = $con->query(
-		 	"SELECT s.*, t.nome FROM sala AS s INNER JOIN tipoSala AS t ON s.tipoSala_id = t.id WHERE " 
-		 	. "(s.descricao LIKE ? OR t.nome LIKE ?) AND s.campi_id = ? ", array( '%'.$q.'%', '%'.$q.'%', $c ));
+		$dados = $con->query("SELECT s.*, t.nome FROM	sala AS s INNER JOIN tipoSala AS t ON s.tipoSala_id = t.id WHERE (s.descricao LIKE ? OR t.nome LIKE ?) AND s.campi_id = ? ", array( '%'.$q.'%', '%'.$q.'%', $c ));
 		$dados = $con->fetchAll();
 		$this->setTerminal(true);
 		return self::renderHtml(array(

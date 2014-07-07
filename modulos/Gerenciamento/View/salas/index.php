@@ -8,7 +8,7 @@
             	window.location.href = url;
             } 
         });
-         $( "#busca" ).submit(function( event ) {            
+        $( "#busca" ).submit(function( event ) {            
             event.preventDefault();
             var query = $("input[name=q]").val();
             var query_campi_id = $("input[name=campi_id]").val();
@@ -52,6 +52,7 @@
 		<div class="col-xs-12 col-md-3 col-sm-6">
 			<form id="busca" action="/gerenciamento/salas/busca" role="form" class="form-inline" method="post">
 				<input type="text" class="form-control" placeholder="Pesquisar" name="q">
+				<input type="hidden" name="campi_id" value="<?php echo $dados[0]->toArray()['id']; ?>" >
 			</form>		
 		</div>
 		<hr class="clean">

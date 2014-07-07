@@ -1,8 +1,8 @@
 <div class="container">
 	
 	<ol class="breadcrumb">
-  		<li><a href="/aplicacao/index/index/usuario/2">Ínicio</a></li>
-  		<li><a href="/aplicacao/eventos/index/usuario/2">Eventos</a></li>
+  		<li><a href="/aplicacao/index/index">Ínicio</a></li>
+  		<li><a href="/aplicacao/eventos/index">Eventos</a></li>
   		<li class="active">Minhas Inscrições</li>
 	</ol>
 

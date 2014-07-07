@@ -3,7 +3,7 @@ return array(
 	'db' => array(
 		'host' => 'localhost',
 		'usuario' => 'root',
-		'senha' => 'root',
-		'database' => 'circuitounifacs'
+		'senha' => '123456',
+		'database' => 'circuito'
 	),
 );

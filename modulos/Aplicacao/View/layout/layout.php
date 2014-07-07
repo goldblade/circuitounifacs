@@ -18,7 +18,7 @@
 	<script src="/assets/js/calendar.js"></script>
 
 </head>
-<body>	
+<body>
 	<header>
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container container-fluid">
@@ -58,39 +58,34 @@
 				    		),			    		
 			    		);	
 			    	// verifica se variavel admin existe
-			    	if(isset($usuario)) {
+			    	if(!empty($_SESSION)) {
 			    	
 			    		//verifica se o admin tem valor 1 = validado
-			    		if ($usuario == 1) {
+			    		if ($_SESSION['perfil'] == 'admin') {
 			    			// menu para perfil administrativo
 			    			$menu = array(
 				    			'Aplicacao/index/index' => array(
-					    			'url' => '/aplicacao/index/index/usuario/1',
+					    			'url' => '/aplicacao/index/index',
 					    			'titulo' => 'Inicio'
 					    		),					    		
-					    		'Gerenciamento/eventos/index' => array(
-									'url' => '/gerenciamento/eventos/index/usuario/1',
-									'titulo' => 'Eventos'
-								),
-								'Gerenciamento/locais/index' => array(
-									'url' => '/gerenciamento/locais/index/usuario/1',
-									'titulo' => 'Locais'
-								),
-								'Gerenciamento/usuario/index' => array(
-									'url' => '/gerenciamento/usuario/index/usuario/1',
-									'titulo' => 'Usuários'
+					    		'Aplicacao/eventos/index' => array(
+					    			'url' => '/aplicacao/eventos/index',
+					    			'titulo' => 'Programação'
+					    		),
+								'Gerenciamento/index' => array(
+									'url' => '/gerenciamento/index',
+									'titulo' => 'Gerenciamento'
 								),
 								'Auth/login/sair' => array(
-									//'url' => '/auth/login/sair',
-									'url' => '/',
+									'url' => '/auth/login/sair',
 									'titulo' => 'Sair'
 								)			
 							);	
 			    		}
-			    		if($usuario == 2){
+			    		if($_SESSION['perfil'] == 'participante'){
 				    		$menu = array(
 					    		'Aplicacao/index/index' => array(
-					    			'url' => '/aplicacao/index/index/usuario/2',
+					    			'url' => '/aplicacao/index/index',
 					    			'titulo' => 'Inicio'
 					    		),
 					    		'Aplicacao/eventos/index' => array(
@@ -98,20 +93,40 @@
 					    			'titulo' => 'Eventos',
 					    			'submenu' => array(
 					    				'Aplicacao/eventos/inscricoes' => array(
-						    				'url' => '/aplicacao/eventos/inscricoes/usuario/2',
+						    				'url' => '/aplicacao/eventos/inscricoes',
 					    					'titulo' => 'Minhas Inscrições'
 					    				),
 					    				'Aplicacao/eventos/index' => array(
-							    			'url' => '/aplicacao/eventos/index/usuario/2',
+							    			'url' => '/aplicacao/eventos/index',
 							    			'titulo' => 'Programação'
 							    		)
 				    				)
 					    		),
 					    		'Auth/login/sair' => array(
-									//'url' => '/auth/login/sair',
-									'url' => '/',
+									'url' => '/auth/login/sair',
 									'titulo' => 'Sair'
-								)			    		
+								)		    		
+				    		);
+				    	}
+
+				    	if($_SESSION['perfil'] == 'coordenador'){
+				    		$menu = array(
+				    			'Aplicacao/index/index' => array(
+					    			'url' => '/aplicacao/index/index',
+					    			'titulo' => 'Inicio'
+					    		),
+					    		'Aplicacao/eventos/index' => array(
+					    			'url' => '/aplicacao/eventos/index',
+					    			'titulo' => 'Programação'
+					    		),
+					    		'Gerenciamento/inscritos/index' => array(
+					    			'url' => '/gerenciamento/inscritos/index',
+					    			'titulo' => 'Inscritos'
+					    		),
+					    		'Auth/login/sair' => array(
+									'url' => '/auth/login/sair',
+									'titulo' => 'Sair'
+								)
 				    		);
 				    	}
 			    	}			    	
