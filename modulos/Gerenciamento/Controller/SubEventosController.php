@@ -11,7 +11,7 @@ use modulos\Locais\Model\Campi;
 
 use Unifacs\Core\Db\Conexao;
 
-class SubEventosController extends ActionController
+class SubeventosController extends ActionController
 {
 	public function indexAction()
 	{	
@@ -24,8 +24,14 @@ class SubEventosController extends ActionController
 			));				
 			header("Location: /gerenciamento/eventos", true, 301);
 		}			
-		$dados = new Evento;
-		$dados = $dados->getAll();
+		// $dados = new Evento;
+		// $dados = $dados->getAll();
+		
+
+		$con = new Conexao;
+		$dados = $con->query("SELECT * FROM evento WHERE edicaoCircuito_id = ?", 
+			array( $eventoId ));				
+		$dados = $con->fetchAll();		
 
 		return self::renderHtml(array(
 			'dados' => $dados,
@@ -210,6 +216,7 @@ class SubEventosController extends ActionController
 			));			
 			header("Location: /gerenciamento/locais", true, 301);
 		} else {
+			$idalocamento = (int) $this->getParam('idalocamento');//id do alocamento
 			$id = (int) $this->getParam('id');//id do subevento
 			$eventoId = (int) $this->getParam('evento');//id do evento(EdicaoCircuito)
 			$dados = null;			
@@ -217,7 +224,10 @@ class SubEventosController extends ActionController
 			 * Verificando se o Evento já tem uma sala alocada
 			 */			
 			$con = new Conexao;
-			$eventoPorSala = $con->query("SELECT * FROM eventoPorSala WHERE evento_id = ?", 
+			$eventoPorSala = $con->query("SELECT e.id, e.data_inicio, e.data_fim, e.sala_id, e.evento_id, 
+				sbe.edicaoCircuito_id as idcircuito, s.descricao as descricaoSala, c.nome as campiNome FROM eventoPorSala as e 
+				LEFT JOIN evento as sbe ON e.evento_id = sbe.id LEFT JOIN sala as s ON e.sala_id = s.id 
+				LEFT JOIN Campi as c ON c.id = s.campi_id WHERE evento_id = ?", 
 				array( $id ));			
 			$eventoPorSala = $con->fetchAll();			
 
@@ -227,10 +237,14 @@ class SubEventosController extends ActionController
 			return self::renderHtml(array(
 				'dados' => $eventoPorSala,
 				'campi' => $campi,
-				'salas' => $salas
+				'salas' => $salas,
+				'idevento' => $id,
+				'idCircuito' => $eventoId, 
+				'idalocamento' => $idalocamento
 			));
 		}				
 	}
+
 
 	public function salasAction()
 	{
@@ -253,6 +267,70 @@ class SubEventosController extends ActionController
 		// var_dump($dados);
 		
 		// $this->setTerminal(true);
+	}
+
+	public function checkhoraAction()
+	{
+		//get id da sala, data, hora inicio e hora final
+		$data = $this->getParam('data');
+		$horaInicio = $this->getParam('horainicio');
+		$horaFinal = $this->getParam('horafinal');
+		$sala = $this->getParam('sala');
+		$idalocamento = $this->getParam('idalocamento');
+		$dataInicio = $data . " " . $horaInicio . ":00";
+		$dataFinal = $data . " " . $horaFinal . ":00";		
+		/*
+		 * SELECT * FROM eventoPorSala where (data_inicio BETWEEN '2014-07-06 22:00:00' AND '2014-07-06 22:29:00' 
+		 * OR data_fim BETWEEN '2014-07-06 22:00:00' AND '2014-07-06 22:29:00') and sala_id = 3;
+		 */
+		$con = new Conexao;
+		$dados = $con->query("SELECT sala_id, data_inicio, data_fim FROM eventoPorSala WHERE (data_inicio BETWEEN ? AND ?" 
+		. " OR data_fim BETWEEN ? AND ?) AND sala_id = ?", 
+		array($dataInicio, $dataFinal, $dataInicio, $dataFinal, $sala) );
+		$dados = $con->fetchAll();
+		$qtd = count($dados);
+		if ($qtd == 0){
+			//nao tem horario marcado, gravar
+			$eventoPorSala = new EventoPorSala;
+			if ($idalocamento > 0){
+				$novoRegistro = $eventoPorSala->getById($idalocamento);
+				$novoRegistro->set('data_inicio', $dataInicio);
+				$novoRegistro->set('data_fim', $dataFinal);
+				$novoRegistro->set('sala_id', $sala);
+				$novoRegistro->set('evento_id', $this->getParam('idevento'));												
+			} else {
+				$novoRegistro = $eventoPorSala->createRow(array(
+					'data_inicio' => $dataInicio,
+					'data_fim' => $dataFinal,
+					'sala_id' => $sala,
+					'evento_id' => $this->getParam('idevento')
+				));	
+			}			
+			$novoRegistro->save();			
+		}		
+
+		echo json_encode(array("qtd" => $qtd));
+	}
+
+	public function apagaralocamentoAction()
+	{
+		$id = (int) $this->getParam('id');		
+		$eventoId = (int) $this->getParam('evento');		
+		$evento = new EventoPorSala;
+		try {
+			$row = $evento->getById($id);
+			$row->delete();
+			$this->mensagem(array(
+				'success' => 'Alocamento Deletado com sucesso!!'
+			));				
+		
+			header("Location: /gerenciamento/subeventos/index/evento/" . $eventoId, true, 301);
+		} catch (\Exception $e) {
+			$this->mensagem(array(
+				'error' => 'Alocamento não encontrado!'
+			));				
+			header("Location: /gerenciamento/subeventos/index/evento/" . $eventoId, true, 301);
+		}
 	}
 
 }

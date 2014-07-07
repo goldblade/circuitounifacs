@@ -36,8 +36,11 @@
 <div class="container">
 	<ol class="breadcrumb">
   		<li><a href="/">Ínicio</a></li>
-  		<li><a href="/gerenciamento/index/index">Gerenciamento</a></li>  		
-  		<li class="active">Eventos</li>
+  		<li><a href="/gerenciamento/index/index">Gerenciamento</a></li>
+  		<li>
+  			<a href="/gerenciamento/eventos/index">Eventos</a>
+  		</li>  		
+  		<li class="active">Sub Eventos</li>
 	</ol>
 		<?php	
 	if ($this->temMensagem()){		
@@ -108,36 +111,36 @@
 			</thead>
 			<tbody class="dados">
 				<?php
-				foreach ($dados as $dado):
+				foreach ($dados as $dado):					
 				?>
 					<tr>
 						<td>
 							<?php
-							echo $dado->toArray()['nome'];
+							echo $dado['nome'];
 							?>
 						</td>	
 						<td>
 							<?php
-							echo $dado->toArray()['detalhes'];
+							echo $dado['detalhes'];
 							?>
 						</td>
 						<td class="text-center">
 							<?php
-							echo $dado->toArray()['cargahoraria'];
+							echo $dado['cargahoraria'];
 							?>
 						</td>					
 						<td class="text-center">
 							<a href="/gerenciamento/subeventos/alocar/id/<?php 
-							echo $dado->toArray()['id'];?>/evento/<?php echo $evento['id'];?>" 
+							echo $dado['id'];?>/evento/<?php echo $evento['id'];?>" 
 							class="btn btn-primary">
 								<i class="glyphicon glyphicon-home"></i> Local
 							</a>							
 							<a href="/gerenciamento/subeventos/save/id/<?php
-							echo $dado->toArray()['id'];
+							echo $dado['id'];
 							?>/evento/<?php echo $evento['id']?>" 
 							class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
 							<a href="/gerenciamento/subeventos/apagar/id/<?php 
-							echo $dado->toArray()['id'];?>/evento/<?php echo $evento['id']?>" 
+							echo $dado['id'];?>/evento/<?php echo $evento['id']?>" 
 							class="btn btn-danger btnapagar"><i class="glyphicon glyphicon-trash"></i> Apagar</a>
 						</td>
 					</tr>
@@ -147,7 +150,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="row-fluid">
+	<!-- <div class="row-fluid">
 		<div class="col-sm-12 text-center">
 			<ul class="pagination ">
 			  	<li><a href="#">&laquo;</a></li>
@@ -159,5 +162,5 @@
 				<li><a href="#">&raquo;</a></li>
 			</ul>
 		</div>		
-	</div>
+	</div> -->
 </div>	

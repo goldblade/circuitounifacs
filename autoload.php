@@ -21,7 +21,7 @@ function autoload($nomeClasse){
     try {
         checkFile($nomeClasse);
         require_once($nomeClasse);
-    } catch (\Exception $e) {
+    } catch (\Exception $e) {        
         $error = new \modulos\Error\Controller\IndexController('Ação não encontrada!');
         $error->setUri(array(
             'modulo' => 'Error',
