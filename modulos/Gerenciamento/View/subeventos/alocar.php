@@ -1,3 +1,5 @@
+<style>	
+</style>
 <div class="container">
 	<ol class="breadcrumb">
   		<li><a href="/">Ínicio</a></li>
@@ -102,11 +104,29 @@
 					<div class="col-xs-12 col-md-12 col-sm-12">
 						<div class="panel panel-info">
 							<div class="panel-heading">
-								<h3 class="panel-title">Escolha o Horário</h3>
+								<h3 class="panel-title">Escolha a Data e o Horário</h3>
 							</div>
 							<div class="panel-body">
 								<div class="row">
-									<div class="form-group">									
+									<div class="form-group">
+										<div class="col-xs-2">
+											<label for="datainicio">
+												DATA: 
+											</label>
+										</div>
+										<div class="col-xs-2" style="z-index:9999999;">
+											<input type="date" name="data_inicio" class="form-control data">
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="form-group">
+										<div class="col-xs-2">
+											<label for="hora_inicio">
+												HORA INÍCIO:
+											</label>
+										</div>
 										<div class="col-xs-2">
 										    <div class="input-group bootstrap-timepicker">									      
 											    <input id="timepicker1" class="form-control" type="text" 
@@ -127,7 +147,12 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="form-group">									
+									<div class="form-group">
+										<div class="col-xs-2">
+											<label for="hora_final">
+												HORA FINAL:
+											</label>
+										</div>									
 										<div class="col-xs-2">
 										    <div class="input-group bootstrap-timepicker">									      
 											    <input id="timepicker2" class="form-control" type="text" 
@@ -308,5 +333,22 @@ $(document).ready(function() {
  		// minuteStep: 1,
  		showMeridian: false,
  	});
+ 	
+
+	$(function() {
+		$( ".data" ).datepicker({
+			dateFormat: 'dd/mm/yy',
+		    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+		    dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+		    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+		    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+		    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+		    nextText: 'Próximo',
+		    prevText: 'Anterior',
+		    changeMonth: true,
+	    	changeYear: true
+		});
+  	});
+
 });
 </script>	
